@@ -85,3 +85,22 @@ http://localhost/blog
 ## 📄 Licença
 
 Este projeto está sob a licença MIT.
+
+## 💡 Inspirações e Base de Estudo
+
+Este projeto foi desenvolvido a partir de estudos práticos utilizando PHP e MySQL, com base em conteúdos educacionais online.
+
+A principal referência utilizada foi:
+
+* PHP Blogging Website Tutorial (YouTube)
+  https://www.youtube.com/watch?v=Bcc97YC18Z0
+
+A partir dessa base, foram implementadas melhorias significativas, incluindo:
+
+* Organização profissional da estrutura do projeto
+* Melhorias no layout e usabilidade
+* Ajustes de segurança e boas práticas
+* Personalizações no sistema de gerenciamento
+
+Este projeto representa uma evolução do conteúdo estudado, com foco em aplicação prática e desenvolvimento profissional.
+
