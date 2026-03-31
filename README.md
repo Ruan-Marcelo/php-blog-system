@@ -68,10 +68,7 @@ http://localhost/blog
 
 ---
 
-## 🔐 Login padrão
 
-Usuário: `admin`
-Senha: `123456`
 
 ---
 
