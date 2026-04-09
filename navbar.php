@@ -36,8 +36,8 @@
                       </a>
 
                       <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">1</a></li>
-                          <li><a class="dropdown-item" href="#">2</a></li>
+                          <li><a class="dropdown-item" href="categoria.php">1</a></li>
+                          <li><a class="dropdown-item" href="categoria.php">2</a></li>
                           <li>
                               <hr class="dropdown-divider">
                           </li>

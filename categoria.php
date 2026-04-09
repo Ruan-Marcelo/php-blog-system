@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Page</title>
+    <title>Blog Categroria Page</title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,6 +20,7 @@
     </header>
 
     <div class="container mt-5">
+        <h1 class="display-4 mb-4 fs-3">Categoria 1</h1>
         <section class="d-flex">
             <main class="main-blog">
                 <div class="card main-blog-card text-white bg-dark mb-5">
