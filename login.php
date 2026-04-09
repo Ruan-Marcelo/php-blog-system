@@ -36,10 +36,10 @@
 		           name="pass">
 		  </div>
 		  
-		  <button type="submit" class="btn btn-primary">Login</button>
+		  <button type="submit" class="btn btn-primary">Logar</button>
 		  <a href="admin-login.php" class="link-secondary">Admin Login</a>&nbsp;&nbsp;&nbsp;
 		  <a href="blog.php" class="link-secondary"> Blog</a>&nbsp;&nbsp;&nbsp;
-		  <a href="signup.php" class="link-secondary">Sign Up</a>
+		  <a href="signup.php" class="link-secondary">Registrar-se</a>
 		</form>
     </div>
 </body>

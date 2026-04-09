@@ -27,7 +27,7 @@
 			</div>
 		    <?php } ?>
 		  <div class="mb-3">
-		    <label class="form-label">Full Name</label>
+		    <label class="form-label">Nome Completo</label>
 		    <input type="text" 
 		           class="form-control"
 		           name="fname"
@@ -35,7 +35,7 @@
 		  </div>
 
 		  <div class="mb-3">
-		    <label class="form-label">User name</label>
+		    <label class="form-label">Nome de Usuario</label>
 		    <input type="text" 
 		           class="form-control"
 		           name="uname"
@@ -43,14 +43,14 @@
 		  </div>
 
 		  <div class="mb-3">
-		    <label class="form-label">Password</label>
+		    <label class="form-label">Senha</label>
 		    <input type="password" 
 		           class="form-control"
 		           name="pass">
 		  </div>
 		  
-		  <button type="submit" class="btn btn-primary">Sign Up</button>
-		  <a href="login.php" class="link-secondary">Login</a>
+		  <button type="submit" class="btn btn-primary">Registrar-se</button>
+		  <a href="login.php" class="link-secondary">Logar</a>
 		</form>
     </div>
 </body>

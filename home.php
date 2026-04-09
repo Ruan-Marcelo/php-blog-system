@@ -18,7 +18,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['fname'])) {
     	<div class="shadow w-450 p-3 text-center">
             <h3 class="display-4 ">Hello, <?=$_SESSION['fname']?></h3>
             <a href="logout.php" class="btn btn-warning">
-            	Logout
+            	Sair
             </a>
 		</div>
     </div>
