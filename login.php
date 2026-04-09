@@ -22,7 +22,7 @@
 		    <?php } ?>
 
 		  <div class="mb-3">
-		    <label class="form-label">User name</label>
+		    <label class="form-label">Nome de Usuario</label>
 		    <input type="text" 
 		           class="form-control"
 		           name="uname"
@@ -30,7 +30,7 @@
 		  </div>
 
 		  <div class="mb-3">
-		    <label class="form-label">Password</label>
+		    <label class="form-label">Senha</label>
 		    <input type="password" 
 		           class="form-control"
 		           name="pass">

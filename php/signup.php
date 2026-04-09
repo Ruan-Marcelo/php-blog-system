@@ -13,15 +13,15 @@ if(isset($_POST['fname']) &&
     $data = "fname=".$fname."&uname=".$uname;
     
     if (empty($fname)) {
-    	$em = "Full name is required";
+    	$em = "O nome completo é obrigatório";
     	header("Location: ../signup.php?error=$em&$data");
 	    exit;
     }else if(empty($uname)){
-    	$em = "User name is required";
+    	$em = "O nome de usuário é obrigatório";
     	header("Location: ../signup.php?error=$em&$data");
 	    exit;
     }else if(empty($pass)){
-    	$em = "Password is required";
+    	$em = "A senha é obrigatória";
     	header("Location: ../signup.php?error=$em&$data");
 	    exit;
     }else {
