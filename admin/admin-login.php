@@ -36,7 +36,7 @@ if(isset($_POST['uname']) &&
                  $_SESSION['admin_id'] = $id;
                  $_SESSION['username'] = $username;
 
-                 header("Location: dashboard.php");
+                 header("Location: users.php");
                  exit;
              }else {
                $em = "Nome de usuário ou senha incorretos";
