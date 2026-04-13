@@ -1,80 +1,36 @@
-<?php 
+<?php
 session_start();
 
 if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
- ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Dashboard</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../assets/CSS/side-bar.css">
-</head>
-<body>
-	<input type="checkbox" id="checkbox">
-	<header class="header">
-		<h2 class="u-name">My <b>Blog</b>
-			<label for="checkbox">
-				<i id="navbtn" class="fa fa-bars" aria-hidden="true"></i>
-			</label>
-		</h2>
-		<i class="fa fa-user" aria-hidden="true"></i>
-	</header>
-	<div class="body">
-		<nav class="side-bar">
-			<div class="user-p">
-				<img src="../assets/imgs/profile.jpg">
-				<h4>Ruan</h4>
-			</div>
-			<ul>
-				<li>
-					<a href="#">
-						<i class="fa fa-desktop" aria-hidden="true"></i>
-						<span>Dashboard</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="fa fa-envelope-o" aria-hidden="true"></i>
-						<span>Message</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="fa fa-comment-o" aria-hidden="true"></i>
-						<span>Comment</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="fa fa-info-circle" aria-hidden="true"></i>
-						<span>About</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="fa fa-cog" aria-hidden="true"></i>
-						<span>Setting</span>
-					</a>
-				</li>
-				<li>
-					<a href="../logout.php">
-						<i class="fa fa-power-off" aria-hidden="true"></i>
-						<span>Logout</span>
-					</a>
-				</li>
-			</ul>
-		</nav>
-		<section class="section-1">
-			<h1>Seja bem vindo</h1>
-			<p># ruan-marcelo</p>
+?>
+	<!DOCTYPE html>
+	<html>
+
+	<head>
+		<title>Dashboard</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!-- Bootstrap 5 -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+		<!-- bootstrap icon -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+		<link rel="stylesheet" href="../assets/CSS/side-bar.css">
+	</head>
+
+	<body>
+		<?php 
+		$key = "hhdsfs1263z";
+		include "inc/side-nav.php" ?>
+			Hello
 		</section>
-	</div>
+		</div>
 
-</body>
-</html>
+		<!-- Bootstrap JS -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
 
-<?php }else {
+	</html>
+
+<?php } else {
 	header("Location: ../admin-login.php");
 	exit;
 } ?>
