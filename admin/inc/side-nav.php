@@ -4,7 +4,7 @@ if (isset($key) && $key == "hhdsfs1263z") {
 ?>
 <input type="checkbox" id="checkbox">
 		<header class="header">
-			<h2 class="u-name">My <b>Blog</b>
+			<h2 class="u-name">APOIO <b>PET</b>
 				<label for="checkbox">
 					<i id="navbtn" class="fa fa-bars" aria-hidden="true"></i>
 				</label>
