@@ -7,12 +7,9 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 	<html>
 
 	<head>
-		<title>Dashboard - Usuarios</title>
+		<title>Dashboard - Category</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		<!-- Bootstrap 5 -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-		<!-- bootstrap icon -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 		<link rel="stylesheet" href="../assets/CSS/side-bar.css">
 		<link rel="stylesheet" href="../assets/CSS/style.css">
 	</head>
@@ -21,13 +18,15 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 		<?php
 		$key = "hhdsfs1263z";
 		include "inc/side-nav.php";
-		include_once("data/User.php");
+		include_once("data/Category.php");
 		include_once("../db_conn.php");
-		$users = getAll($conn); ?>
+		$categories = getAll($conn);
+
+		?>
 
 		<div class="main-table">
-			<h3 class="mb-3">All Users
-				<a href="../signup.php" class="btn btn-success">Add New</a>
+			<h3 class="mb-3">All Categories
+				<a href="Category-add.php" class="btn btn-success">Add New</a>
 			</h3>
 			<?php if (isset($_GET['error'])) { ?>
 				<div class="alert alert-warning">
@@ -41,24 +40,23 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 				</div>
 			<?php } ?>
 
-			<?php if ($users != 0) { ?>
+			<?php if ($categories != 0) { ?>
 				<table class="table t1 table-bordered">
 					<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">Nome completo</th>
-							<th scope="col">Nome de usuario</th>
-							<th scope="col">Ações</th>
+							<th scope="col">Category</th>
+							<th scope="col">Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($users as $user) { ?>
+						<?php foreach ($categories as $category) { ?>
 							<tr>
-								<th scope="row"><?= $user['id'] ?></th>
-								<td><?= $user['fname'] ?></td>
-								<td><?= $user['username'] ?></td>
+								<th scope="row"><?= $category['id'] ?></th>
+								<td><?= $category['category'] ?></td>
 								<td>
-									<a href="user-delete.php?user_id=<?= $user['id'] ?>" class="btn btn-danger">Delete</a>
+									<a href="category-delete.php?id=<?= $category['id'] ?>" class="btn btn-danger">Delete</a>
+									<a href="category-edit.php?id=<?= $category['id'] ?>" class="btn btn-warning">Edit</a>
 								</td>
 							</tr>
 						<?php } ?>
@@ -76,7 +74,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 
 		<script>
 			var navList = document.getElementById('navList').children;
-			navList.item(0).classList.add("active");
+			navList.item(2).classList.add("active");
 		</script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 	</body>
