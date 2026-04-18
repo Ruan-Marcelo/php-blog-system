@@ -1,3 +1,11 @@
+<?php
+session_start();
+$logged = false;
+if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
+    $logged = true;
+    $user_id = $_SESSION['user_id'];
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -10,8 +18,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-<!-- css -->
-     <link rel="stylesheet" href="assets/CSS/style.css">
+    <!-- css -->
+    <link rel="stylesheet" href="assets/CSS/style.css">
 </head>
 
 <body class="">
@@ -20,7 +28,9 @@
     </header>
 
     <main>
+        <div class="main-banner">
 
+        </div>
     </main>
 
 

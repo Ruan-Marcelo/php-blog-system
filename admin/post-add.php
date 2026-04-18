@@ -22,14 +22,14 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 		<?php
 		$key = "hhdsfs1263z";
 		include "inc/side-nav.php";
-		include_once("data/Category.php");
+		include_once("data/Categoria.php");
 		include_once("../db_conn.php");
 		$categories = getAll($conn);
 
 		?>
 
 		<div class="main-table">
-			<h3 class="mb-3">Create New Post
+			<h3 class="mb-3">Criar um novo Post
 				<a href="post.php" class="btn btn-secondary">Posts</a>
 			</h3>
 			<?php if (isset($_GET['error'])) { ?>
@@ -50,7 +50,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 				enctype="multipart/form-data">
 
 				<div class="mb-3">
-					<label class="form-label">Title</label>
+					<label class="form-label">Titulo</label>
 					<input type="text"
 						class="form-control"
 						name="title">
@@ -58,19 +58,19 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 				</div>
 
 				<div class="mb-3">
-					<label class="form-label">Cover Image</label>
+					<label class="form-label">Imagem da capa</label>
 					<input type="file"
 						class="form-control"
 						name="cover">
 				</div>
 				<div class="mb-3">
-					<label class="form-label">Text</label>
+					<label class="form-label">Conteudo</label>
 					<textarea
 						class="form-control text"
 						name="text"></textarea>
 				</div>
 				<div class="mb-3">
-					<label class="form-label">Category</label>
+					<label class="form-label">Categoria</label>
 					<select name="category" class="form-control">
 						<?php foreach ($categories as $category) { ?>
 							<option value="<?= $category['id'] ?>">
@@ -79,7 +79,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 					</select>
 
 				</div>
-				<button type="submit" class="btn btn-primary">Create</button>
+				<button type="submit" class="btn btn-primary">Criar</button>
 			</form>
 		</div>
 		</section>

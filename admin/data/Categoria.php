@@ -6,14 +6,8 @@ function getAll($conn){
    $stmt = $conn->prepare($sql);
    $stmt->execute();
 
-   if($stmt->rowCount() >= 1){
-   	   $data = $stmt->fetchAll();
-   	   return $data;
-   }else {
-   	 return 0;
-   }
+   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
 // getById
 function getById($conn, $id){
    $sql = "SELECT * FROM category WHERE id=?";

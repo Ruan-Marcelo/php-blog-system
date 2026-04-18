@@ -25,8 +25,8 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 		?>
 
 		<div class="main-table">
-			<h3 class="mb-3">All Posts
-				<a href="post-add.php" class="btn btn-success">Add New</a>
+			<h3 class="mb-3">Todos os Pots
+				<a href="post-add.php" class="btn btn-success">Adcionar um novo Post</a>
 			</h3>
 			<?php if (isset($_GET['error'])) { ?>
 				<div class="alert alert-warning">
@@ -45,11 +45,11 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 					<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th>Title</th>
-							<th>Category</th>
-							<th>Comments</th>
+							<th>titulo</th>
+							<th>Categoria</th>
+							<th>Comentarios</th>
 							<th>Likes</th>
-							<th>Action</th>
+							<th>Ações</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -76,16 +76,16 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 									?>
 								</td>
 								<td>
-									<a href="post-delete.php?post_id=<?= $post['post_id'] ?>" class="btn btn-danger">Delete</a>
-									<a href="post-edit.php?post_id=<?= $post['post_id'] ?>" class="btn btn-warning">Edit</a>
+									<a href="post-delete.php?post_id=<?= $post['post_id'] ?>" class="btn btn-danger">Deletar</a>
+									<a href="post-edit.php?post_id=<?= $post['post_id'] ?>" class="btn btn-warning">Editar</a>
 									<?php
 									if ($post['publish'] == 1) {
 									?>
-										<a href="post-publish.php?post_id=<?= $post['post_id'] ?>&publish=1" class="btn btn-link disabled">Public</a>
-										<a href="post-publish.php?post_id=<?= $post['post_id'] ?>&publish=0" class="btn btn-link ">Privet</a>
+										<a href="post-publish.php?post_id=<?= $post['post_id'] ?>&publish=1" class="btn btn-link disabled">Publico</a>
+										<a href="post-publish.php?post_id=<?= $post['post_id'] ?>&publish=0" class="btn btn-link ">Privado</a>
 									<?php } else { ?>
-										<a href="post-publish.php?post_id=<?= $post['post_id'] ?>&publish=1" class="btn btn-link ">Public</a>
-										<a href="post-publish.php?post_id=<?= $post['post_id'] ?>&publish=0" class="btn btn-link disabled">Privet</a>
+										<a href="post-publish.php?post_id=<?= $post['post_id'] ?>&publish=1" class="btn btn-link ">Publico</a>
+										<a href="post-publish.php?post_id=<?= $post['post_id'] ?>&publish=0" class="btn btn-link disabled">Privado</a>
 									<?php } ?>
 								</td>
 							</tr>

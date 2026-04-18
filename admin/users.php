@@ -26,8 +26,8 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 		$users = getAll($conn); ?>
 
 		<div class="main-table">
-			<h3 class="mb-3">All Users
-				<a href="../signup.php" class="btn btn-success">Add New</a>
+			<h3 class="mb-3">todos os Usuarios
+				<a href="../signup.php" class="btn btn-success">Adcionar Usuario</a>
 			</h3>
 			<?php if (isset($_GET['error'])) { ?>
 				<div class="alert alert-warning">

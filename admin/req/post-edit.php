@@ -15,11 +15,11 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
       $cu = $_POST['cover_url'];
 
       if(empty($title)){
-         $em = "Title is required"; 
+         $em = "O título é obrigatório"; 
          header("Location: ../post-edit.php?error=$em&post_id=$post_id");
          exit;
       }else if(empty($title)){
-         $em = "Title is required"; 
+         $em = "O título é obrigatório"; 
          header("Location: ../post-edit.php?error=$em&post_id=$post_id");
          exit;
       } 
@@ -41,7 +41,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
        $error = $_FILES['cover']['error']; 
        if ($error === 0) {
            if ($image_size > 130000) {
-               $em = "Sorry, your file is too large."; 
+               $em = "Desculpe, seu arquivo é muito grande.."; 
                 header("Location: ../post-edit.php?error=$em&post_id=$post_id");
                 exit;
            }else {
@@ -60,7 +60,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
                   $stmt = $conn->prepare($sql);
                   $res = $stmt->execute([$title, $text, $new_image_name, $post_id]);
               }else {
-                $em = "You can't upload files of this type"; 
+                $em = "Você não pode enviar arquivos deste tipo."; 
                 header("Location: ../post-add.php?error=$em&post_id=$post_id");
                 exit;
               }
@@ -75,11 +75,11 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
       }
       
      if ($res) {
-          $sm = "Successfully Created!"; 
+          $sm = "Atualizado com sucesso!"; 
           header("Location: ../post-edit.php?success=$sm&post_id=$post_id");
           exit;
       }else {
-        $em = "Unknown error occurred"; 
+        $em = "Ocorreu um erro desconhecido"; 
         header("Location: ../post-edit.php?error=$em&post_id=$post_id");
         exit;
       }

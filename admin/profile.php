@@ -7,7 +7,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 	<html>
 
 	<head>
-		<title>Dashboard - Users</title>
+		<title>Dashboard - Usuários</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 		<link rel="stylesheet" href="../assets/CSS/side-bar.css">
@@ -25,7 +25,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 		?>
 
 		<div class="main-table">
-			<h3 class="mb-3">Admin Profile </h3>
+			<h3 class="mb-3">Perfil do administrador </h3>
 			<?php if (isset($_GET['error'])) { ?>
 				<div class="alert alert-warning">
 					<?= htmlspecialchars($_GET['error']) ?>
@@ -40,35 +40,35 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 			<form class="shadow p-3"
 				action="req/admin-edit.php"
 				method="post">
-				<h3>Change Profile Info</h3>
+				<h3>Alterar informações do perfil</h3>
 				<div class="mb-3">
-					<label class="form-label">First name</label>
+					<label class="form-label">Nome</label>
 					<input type="text"
 						class="form-control"
 						name="fname"
 						value="<?= $admin['first_name'] ?>">
 				</div>
 				<div class="mb-3">
-					<label class="form-label">Last name</label>
+					<label class="form-label">Sobrenome</label>
 					<input type="text"
 						class="form-control"
 						name="lname"
 						value="<?= $admin['last_name'] ?>">
 				</div>
 				<div class="mb-3">
-					<label class="form-label">Username</label>
+					<label class="form-label">Nome de usuário</label>
 					<input type="text"
 						class="form-control"
 						name="username"
 						value="<?= $admin['username'] ?>">
 				</div>
-				<button type="submit" class="btn btn-primary">Change</button>
+				<button type="submit" class="btn btn-primary">Salvar</button>
 			</form>
 
 			<form class="shadow p-3 mt-5"
 				action="req/admin-edit-pass.php"
 				method="post">
-				<h3 id="cpassword">Change password</h3>
+				<h3 id="cpassword">Alterar senha</h3>
 				<?php if (isset($_GET['perror'])) { ?>
 					<div class="alert alert-warning">
 						<?= htmlspecialchars($_GET['perror']) ?>
@@ -81,24 +81,24 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 					</div>
 				<?php } ?>
 				<div class="mb-3">
-					<label class="form-label">Current Password</label>
+					<label class="form-label">Senha atual</label>
 					<input type="password"
 						class="form-control"
 						name="cpass">
 				</div>
 				<div class="mb-3">
-					<label class="form-label">New password</label>
+					<label class="form-label">Nova senha</label>
 					<input type="password"
 						class="form-control"
 						name="new_pass">
 				</div>
 				<div class="mb-3">
-					<label class="form-label">Confirm password</label>
+					<label class="form-label">Confirmar senha</label>
 					<input type="password"
 						class="form-control"
 						name="cnew_pass">
 				</div>
-				<button type="submit" class="btn btn-primary">Change password</button>
+				<button type="submit" class="btn btn-primary">Salvar Senha</button>
 			</form>
 
 		</div>

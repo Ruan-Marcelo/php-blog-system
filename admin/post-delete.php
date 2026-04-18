@@ -13,11 +13,11 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])
   $res2 = deleteCommentByPostId($conn, $post_id);
   $res3 = deleteLikeByPostId($conn, $post_id);
   if ($res) {
-      $sm = "Successfully deleted!"; 
+      $sm = "Excluído com sucesso!"; 
       header("Location: post.php?success=$sm");
       exit;
   }else {
-    $em = "Unknown error occurred"; 
+    $em = "Ocorreu um erro desconhecido"; 
     header("Location: post.php?error=$em");
     exit;
   }

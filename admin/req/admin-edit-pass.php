@@ -14,19 +14,19 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) ) {
       $id = $_SESSION['admin_id'];
 
       if(empty($cpass)){
-         $em = "Current Password is required"; 
+         $em = "A senha atual é obrigatória"; 
          header("Location: ../profile.php?perror=$em#cpassword");
          exit;
       }else if(empty($new_pass)){
-         $em = "New Password is required"; 
+         $em = "Nova senha é necessária"; 
          header("Location: ../profile.php?perror=$em#cpassword");
          exit;
       }else if(empty($cnew_pass)){
-         $em = "Confirm Password is required"; 
+         $em = "Confirmar senha é obrigatório"; 
          header("Location: ../profile.php?perror=$em#cpassword");
          exit;
       }else if($cnew_pass != $new_pass){
-         $em = "New password and confirm password doesn't match"; 
+         $em = "A nova senha e a confirmação de senha não coincidem."; 
          header("Location: ../profile.php?perror=$em#cpassword");
          exit;
       }
@@ -38,7 +38,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) ) {
        $data = $stmt->fetch();
 
       if(!password_verify($cpass, $data['password'])){
-         $em = "Incorect password"; 
+         $em = "Senha incorreta"; 
          header("Location: ../profile.php?perror=$em#cpassword");
          exit;
       }else {
@@ -49,11 +49,11 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) ) {
           $stmt = $conn->prepare($sql);
           $res = $stmt->execute([$new_pass]);
          if ($res) {
-              $sm = "The Password Successfully changed!"; 
+              $sm = "A senha foi alterada com sucesso.!"; 
               header("Location: ../profile.php?psuccess=$sm#cpassword");
               exit;
           }else {
-            $em = "Unknown error occurred"; 
+            $em = "Ocorreu um erro desconhecido"; 
             header("Location: ../profile.php?perror=$em#cpassword");
             exit;
           }

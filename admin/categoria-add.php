@@ -22,8 +22,8 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 		?>
 
 		<div class="main-table">
-			<h3 class="mb-3">Create New Category
-				<a href="Category.php" class="btn btn-success">Category</a>
+			<h3 class="mb-3">Criar Nova Categoria
+				<a href="Categoria.php" class="btn btn-success">Categoria</a>
 			</h3>
 			<?php if (isset($_GET['error'])) { ?>
 				<div class="alert alert-warning">
@@ -37,17 +37,17 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 				</div>
 			<?php } ?>
 			<form class="shadow p-3"
-				action="req/Category-create.php"
+				action="req/Categoria-create.php"
 				method="post">
 
 				<div class="mb-3">
-					<label class="form-label">Category</label>
+					<label class="form-label">Categoria</label>
 					<input type="text"
 						class="form-control"
 						name="category">
 				</div>
 
-				<button type="submit" class="btn btn-primary">Create</button>
+				<button type="submit" class="btn btn-primary">Criar</button>
 			</form>
 
 		</div>

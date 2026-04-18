@@ -8,8 +8,8 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) ) {
       $category = $_POST['category'];
 
       if(empty($category)){
-         $em = "Category is required"; 
-         header("Location: ../category-add.php?error=$em");
+         $em = "A categoria é obrigatória"; 
+         header("Location: ../categoria-add.php?error=$em");
          exit;
       }
     
@@ -19,18 +19,18 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) ) {
     
       
      if ($res) {
-          $sm = "Successfully Created!"; 
-          header("Location: ../category-add.php?success=$sm");
+          $sm = "Criado com sucesso!"; 
+          header("Location: ../categoria-add.php?success=$sm");
           exit;
       }else {
-        $em = "Unknown error occurred"; 
-        header("Location: ../category-add.php?error=$em");
+        $em = "Ocorreu um erro desconhecido"; 
+        header("Location: ../categoria-add.php?error=$em");
         exit;
       }
 
 
     }else {
-        header("Location: ../category-add.php");
+        header("Location: ../categoria-add.php");
         exit;
     }
 

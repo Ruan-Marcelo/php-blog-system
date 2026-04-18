@@ -35,7 +35,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="Category.php">
+					<a href="Categoria.php">
 						<i class="fa fa-window-restore" aria-hidden="true"></i>
 						<span>Categorias</span>
 					</a>

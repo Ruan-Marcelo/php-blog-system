@@ -7,7 +7,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 	<html>
 
 	<head>
-		<title>Dashboard - Comentarios</title>
+		<title>Dashboard - Category</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 		<link rel="stylesheet" href="../assets/CSS/side-bar.css">
@@ -18,16 +18,16 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 		<?php
 		$key = "hhdsfs1263z";
 		include "inc/side-nav.php";
-		include_once("data/Comment.php");
-		include_once("data/Post.php");
+		include_once("data/Categoria.php");
 		include_once("../db_conn.php");
-		$comments = getAllComment($conn);
-
+		$categories = getAll($conn);
 
 		?>
 
 		<div class="main-table">
-			<h3 class="mb-3">Todos os Comentarios</h3>
+			<h3 class="mb-3">Todas as Categorias
+				<a href="categoria-add.php" class="btn btn-success">Adicionar Categoria</a>
+			</h3>
 			<?php if (isset($_GET['error'])) { ?>
 				<div class="alert alert-warning">
 					<?= htmlspecialchars($_GET['error']) ?>
@@ -40,38 +40,23 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 				</div>
 			<?php } ?>
 
-			<?php if ($comments != 0) { ?>
+			<?php if ($categories != 0) { ?>
 				<table class="table t1 table-bordered">
 					<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">Titulo do Post</th>
-							<th scope="col">Comentario</th>
-							<th scope="col">Usuario</th>
+							<th scope="col">Categoria</th>
 							<th scope="col">Ação</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($comments as $comment) {
-						?>
+						<?php foreach ($categories as $category) { ?>
 							<tr>
-								<th scope="row"><?= $comment['comment_id'] ?></th>
+								<th scope="row"><?= $category['id'] ?></th>
+								<td><?= $category['category'] ?></td>
 								<td>
-									<a href="single_post.php?post_id=<?= $comment['post_id'] ?>">
-										<?php
-										$p = getByIdDeep($conn, $comment['post_id']);
-										echo $p['post_title']; ?></a>
-								</td>
-								<td>
-									<?= $comment['comment'] ?>
-								</td>
-								<td>
-									<?php
-									$u = getUserByID($conn, $comment['user_id']);
-									echo '@' . (($u != 0 && isset($u['username'])) ? $u['username'] : 'usuário desconhecido'); ?>
-								</td>
-								<td>
-									<a href="comment-delete.php?comment_id=<?= $comment['comment_id'] ?>" class="btn btn-danger">Delete</a>
+									<a href="categoria-delete.php?id=<?= $category['id'] ?>" class="btn btn-danger">Deletar</a>
+									<a href="categoria-edit.php?id=<?= $category['id'] ?>" class="btn btn-warning">Editar</a>
 								</td>
 							</tr>
 						<?php } ?>
@@ -80,7 +65,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 				</table>
 			<?php } else { ?>
 				<div class="alert alert-warning">
-					Vazio!
+					Empty!
 				</div>
 			<?php } ?>
 		</div>
@@ -89,9 +74,10 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 
 		<script>
 			var navList = document.getElementById('navList').children;
-			navList.item(3).classList.add("active");
+			navList.item(2).classList.add("active");
 		</script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+		 <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 	</body>
 
 	</html>

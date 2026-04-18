@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
+if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && $_GET['id']) {
 ?>
 	<!DOCTYPE html>
 	<html>
 
 	<head>
-		<title>Dashboard - Category</title>
+		<title>Dashboard - Category Edit</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 		<link rel="stylesheet" href="../assets/CSS/side-bar.css">
@@ -17,16 +17,24 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 	<body>
 		<?php
 		$key = "hhdsfs1263z";
+		$id = $_GET['id'];
 		include "inc/side-nav.php";
-		include_once("data/Category.php");
+		include_once("data/Categoria.php");
 		include_once("../db_conn.php");
-		$categories = getAll($conn);
+		$categoryx = getById($conn, $id);
+
+		if (isset($_GET['category'])) {
+			$category = $_GET['category'];
+		} else {
+			$category = $categoryx['category'];
+			$category_id = $categoryx['id'];
+		}
 
 		?>
 
 		<div class="main-table">
-			<h3 class="mb-3">All Categories
-				<a href="Category-add.php" class="btn btn-success">Add New</a>
+			<h3 class="mb-3">Editar
+				<a href="Categoria.php" class="btn btn-success">Categoria</a>
 			</h3>
 			<?php if (isset($_GET['error'])) { ?>
 				<div class="alert alert-warning">
@@ -39,35 +47,26 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 					<?= htmlspecialchars($_GET['success']) ?>
 				</div>
 			<?php } ?>
+			<form class="shadow p-3"
+				action="req/Categoria-edit.php"
+				method="post">
 
-			<?php if ($categories != 0) { ?>
-				<table class="table t1 table-bordered">
-					<thead>
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Category</th>
-							<th scope="col">Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php foreach ($categories as $category) { ?>
-							<tr>
-								<th scope="row"><?= $category['id'] ?></th>
-								<td><?= $category['category'] ?></td>
-								<td>
-									<a href="category-delete.php?id=<?= $category['id'] ?>" class="btn btn-danger">Delete</a>
-									<a href="category-edit.php?id=<?= $category['id'] ?>" class="btn btn-warning">Edit</a>
-								</td>
-							</tr>
-						<?php } ?>
-
-					</tbody>
-				</table>
-			<?php } else { ?>
-				<div class="alert alert-warning">
-					Empty!
+				<div class="mb-3">
+					<label class="form-label">Categoria</label>
+					<input type="text"
+						class="form-control"
+						name="category"
+						value="<?= $category ?>">
+					<input type="text"
+						class="form-control"
+						name="id"
+						value="<?= $category_id ?>"
+						hidden>
 				</div>
-			<?php } ?>
+
+				<button type="submit" class="btn btn-primary">Atualizar</button>
+			</form>
+
 		</div>
 		</section>
 		</div>

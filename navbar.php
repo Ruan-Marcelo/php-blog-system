@@ -6,54 +6,65 @@
               APOIO PET
           </a>
 
-          <button class="navbar-toggler" type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent">
-              <span class="navbar-toggler-icon"></span>
-          </button>
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="blog.php">Blog</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" 
+	             href="categoria.php">
+	             Categoria</a>
+	        </li>
+	         <?php 
+               if ($logged) {
+	         ?>
+	        <li class="nav-item dropdown">
+	          <a class="nav-link dropdown-toggle" 
+	             href="profile.php" 
+	             role="button" 
+	             data-bs-toggle="dropdown" 
+	             aria-expanded="false">
+	             <i class="fa fa-user" 
+	                aria-hidden="true"></i> 
+	            @<?=$_SESSION['username']?>
+	          </a>
+	          <ul class="dropdown-menu">
+	            <li><a class="dropdown-item" 
+	            	   href="logout.php">
+	            	   Sair</a></li>
+	          </ul>
+	        </li>
+	        <?php 
+               } else {
+	         ?>
+	         <li class="nav-item">
+	          <a class="nav-link" href="login.php">entrar | Signup</a>
+	        </li>
+	         <?php 
+               }
+	         ?>
+	      </ul>
+	      <form class="d-flex" 
+	             role="search"
+	             method="GET"
+	             action="blog.php">
+	        <input class="form-control me-2" 
+	               type="search"
+	               name="search" 
+	               placeholder="Procurar" 
+	               aria-label="Search">
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                  <li class="nav-item">
-                      <a class="nav-link active" href="index.php">Inicio</a>
-                  </li>
-
-                  <li class="nav-item">
-                      <a class="nav-link" href="sobre.php">Sobre</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="contac.php">Contato</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="blog.php">Blog</a>
-                  </li>
-
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                          Categoria
-                      </a>
-
-                      <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="categoria.php">1</a></li>
-                          <li><a class="dropdown-item" href="categoria.php">2</a></li>
-                          <li>
-                              <hr class="dropdown-divider">
-                          </li>
-                          <li><a class="dropdown-item" href="#">3</a></li>
-                      </ul>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="login.php"><!--<i class="bi bi-person-circle"></i>-->Login | Singnup </a>
-                  </li>
-              </ul>
-
-              <form class="d-flex">
-                  <input class="form-control me-2" type="search" placeholder="Pesquisar">
-                  <button class="btn btn-outline-success" type="submit"><i class="bi bi-search-heart"></i></button>
-              </form>
-
-          </div>
-      </div>
-  </nav>
+	        <button class="btn btn-outline-success" 
+	                type="submit">
+	                Procurar</button>
+	      </form>
+	    </div>
+	  </div>
+	</nav>

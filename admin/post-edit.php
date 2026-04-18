@@ -32,7 +32,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && isset($_GET[
 		?>
 
 		<div class="main-table">
-			<h3 class="mb-3">Create New Post
+			<h3 class="mb-3">Editar Post
 				<a href="post.php" class="btn btn-secondary">Posts</a>
 			</h3>
 			<?php if (isset($_GET['error'])) { ?>
@@ -53,7 +53,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && isset($_GET[
 				enctype="multipart/form-data">
 
 				<div class="mb-3">
-					<label class="form-label">Title</label>
+					<label class="form-label">titulo</label>
 					<input type="text"
 						class="form-control"
 						name="title"
@@ -70,20 +70,20 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && isset($_GET[
 						hidden>
 				</div>
 				<div class="mb-3">
-					<label class="form-label">Cover Image</label>
+					<label class="form-label">Imagem</label>
 					<input type="file"
 						class="form-control"
 						name="cover">
 					<img src="../upload/blog/<?= $post['cover_url'] ?>" width="200">
 				</div>
 				<div class="mb-3">
-					<label class="form-label">Text</label>
+					<label class="form-label">Conteudo</label>
 					<textarea
 						class="form-control text"
 						name="text"><?= $post['post_text'] ?></textarea>
 				</div>
 				<div class="mb-3">
-					<label class="form-label">Category</label>
+					<label class="form-label">Categoria</label>
 					<select name="category" class="form-control">
 						<?php foreach ($categories as $category) {
 
@@ -95,7 +95,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && isset($_GET[
 					</select>
 
 				</div>
-				<button type="submit" class="btn btn-primary">Create</button>
+				<button type="submit" class="btn btn-primary">Atualizar</button>
 			</form>
 		</div>
 		</section>
