@@ -79,25 +79,25 @@ $notFound = 0;
 
 											if ($liked) {
 										?>
-												<i class="fa fa-thumbs-up liked like-btn"
+												<i class="bi bi-hand-thumbs-up like-btn"
 													post-id="<?= $post_id ?>"
 													liked="1"
 													aria-hidden="true"></i>
 											<?php } else { ?>
-												<i class="fa fa-thumbs-up like like-btn"
+												<i class="bi bi-hand-thumbs-up like-btn"
 													post-id="<?= $post_id ?>"
 													liked="0"
 													aria-hidden="true"></i>
 											<?php }
 										} else { ?>
-											<i class="bi bi-hand-thumbs-up"></i>
+											<i class="bi bi-hand-thumbs-up like-btn"></i>
 										<?php } ?>
 										Likes (
 										<span><?php
 												echo likeCountByPostID($conn, $post['post_id']);
 												?></span> )
 										<a href="blog-view.php?post_id=<?= $post['post_id'] ?>#comments">
-											<i class="bi bi-chat-fill"></i></i> Comments (
+											<i class="bi bi-chat-fill"></i></i> Comentarios (
 											<?php
 											echo CountByPostID($conn, $post['post_id']);
 											?>

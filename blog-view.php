@@ -22,7 +22,7 @@ if (isset($_GET['post_id'])) {
 	}
 ?>
 	<!DOCTYPE html>
-	<html lang="en">
+	<html lang="pt-br">
 
 	<head>
 		<meta charset="UTF-8">
@@ -56,30 +56,28 @@ if (isset($_GET['post_id'])) {
 								<div class="react-btns">
 									<?php
 									$post_id = $post['post_id'];
+
 									if ($logged) {
 										$liked = isLikedByUserID($conn, $post_id, $user_id);
 
-
 										if ($liked) {
 									?>
-											<i class="fa fa-thumbs-up liked like-btn"
+											<i class="bi bi-hand-thumbs-up-fill like-btn"
 												post-id="<?= $post_id ?>"
-												liked="1"
-												aria-hidden="true"></i>
+												liked="1"></i>
 										<?php } else { ?>
-											<i class="fa fa-thumbs-up like like-btn"
+											<i class="bi bi-hand-thumbs-up like-btn"
 												post-id="<?= $post_id ?>"
-												liked="0"
-												aria-hidden="true"></i>
+												liked="0"></i>
 										<?php }
 									} else { ?>
-										<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+										<i class="bi bi-hand-thumbs-up"></i>
 									<?php } ?>
+
 									Likes (
-									<span><?php
-											echo likeCountByPostID($conn, $post['post_id']);
-											?></span> )
-									<i class="fa fa-comment" aria-hidden="true"></i> Comentarios (
+									<span><?= likeCountByPostID($conn, $post['post_id']); ?></span>
+									)
+									<i class="bi bi-chat-fill"></i></i> Comentarios (
 									<?php
 									echo CountByPostID($conn, $post['post_id']);
 									?>
@@ -183,16 +181,23 @@ if (isset($_GET['post_id'])) {
 				$(".like-btn").click(function() {
 					var post_id = $(this).attr('post-id');
 					var liked = $(this).attr('liked');
+					var el = $(this);
 
-					if (liked == 1) {
-						$(this).attr('liked', '0');
-						$(this).removeClass('liked');
-					} else {
-						$(this).attr('liked', '1');
-						$(this).addClass('liked');
-					}
-					$(this).next().load("ajax/like-unlike.php", {
+					$.post("assets/ajax/like-unlike.php", {
 						post_id: post_id
+					}, function(response) {
+
+						// Atualiza contador
+						el.closest(".react-btns").find("span").text(response);
+
+						// Toggle visual
+						if (liked == 1) {
+							el.attr('liked', '0');
+							el.removeClass('liked');
+						} else {
+							el.attr('liked', '1');
+							el.addClass('liked');
+						}
 					});
 				});
 			});

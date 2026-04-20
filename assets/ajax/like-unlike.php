@@ -6,7 +6,7 @@ if (isset($_SESSION['user_id'])  &&
 	isset($_SESSION['username']) &&
     isset($_POST['post_id'])){
     
-    include "../db_conn.php";
+    include "../../db_conn.php";
 	$user_id = $_SESSION['user_id'];
 	$post_id = $_POST['post_id'];
 	if (empty($post_id)) {
