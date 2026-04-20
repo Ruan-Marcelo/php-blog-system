@@ -8,7 +8,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
 $notFound = 0;
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 	<meta charset="UTF-8">
@@ -37,7 +37,7 @@ $notFound = 0;
 	include_once("db_conn.php");
 	if (isset($_GET['search'])) {
 		$key = $_GET['search'];
-		$posts = serach($conn, $key);
+		$posts = search($conn, $key);
 		if ($posts == 0) {
 			$notFound = 1;
 		}

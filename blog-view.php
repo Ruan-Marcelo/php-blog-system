@@ -89,34 +89,50 @@ if (isset($_GET['post_id'])) {
 								<small class="text-body-secondary"><?= $post['crated_at'] ?></small>
 							</div>
 
-							<form action="php/comment.php"
-								method="post"
-								id="comments">
+							<?php if (isset($_SESSION['user_id'])) { ?>
 
-								<h5 class="mt-4 text-secondary">Adicionar Comentario</h5>
-								<?php if (isset($_GET['error'])) { ?>
-									<div class="alert alert-danger" role="alert">
-										<?php echo htmlspecialchars($_GET['error']); ?>
-									</div>
-								<?php } ?>
+								<form action="php/comment.php"
+									method="post"
+									id="comments">
 
-								<?php if (isset($_GET['success'])) { ?>
-									<div class="alert alert-success" role="alert">
-										<?php echo htmlspecialchars($_GET['success']); ?>
+									<h5 class="mt-4 text-secondary">Adicionar Comentario</h5>
+
+									<?php if (isset($_GET['error'])) { ?>
+										<div class="alert alert-danger">
+											<?= htmlspecialchars($_GET['error']); ?>
+										</div>
+									<?php } ?>
+
+									<?php if (isset($_GET['success'])) { ?>
+										<div class="alert alert-success">
+											<?= htmlspecialchars($_GET['success']); ?>
+										</div>
+									<?php } ?>
+
+									<div class="mb-3">
+										<textarea class="form-control"
+											name="comment"
+											required></textarea>
+
+										<input type="hidden"
+											name="post_id"
+											value="<?= $id ?>">
 									</div>
-								<?php } ?>
-								<div class="mb-3">
-									<input type="text"
-										class="form-control"
-										name="comment">
-									<input type="text"
-										class="form-control"
-										name="post_id"
-										value="<?= $id ?>"
-										hidden>
+
+									<button type="submit" class="btn btn-primary">
+										Comentar
+									</button>
+								</form>
+
+							<?php } else { ?>
+
+								<div class="alert alert-warning mt-3">
+									<a href="login.php" class="btn btn-primary">
+										Fazer login para comentar
+									</a>
 								</div>
-								<button type="submit" class="btn btn-primary">Comentar</button>
-							</form>
+
+							<?php } ?>
 							<hr>
 							<div>
 								<div class="comments">

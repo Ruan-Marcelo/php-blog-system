@@ -68,8 +68,8 @@ function getByIdDeep($conn, $id){
    }
 }
 
-// serach
-function serach($conn, $key){
+// search
+function search($conn, $key){
    # creating simple search temple :)  
    $key = "%{$key}%";
 
