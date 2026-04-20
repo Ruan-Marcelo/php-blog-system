@@ -25,7 +25,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 		?>
 
 		<div class="main-table">
-			<h3 class="mb-3">Todos os Pots
+			<h3 class="mb-3">Todos os Posts
 				<a href="post-add.php" class="btn btn-success">Adcionar um novo Post</a>
 			</h3>
 			<?php if (isset($_GET['error'])) { ?>
@@ -95,7 +95,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 				</table>
 			<?php } else { ?>
 				<div class="alert alert-warning">
-					Empty!
+					Nenhuma publicação disponíve
 				</div>
 			<?php } ?>
 		</div>

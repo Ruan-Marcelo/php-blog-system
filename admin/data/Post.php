@@ -70,7 +70,7 @@ function getByIdDeep($conn, $id){
 
 // search
 function search($conn, $key){
-   # creating simple search temple :)  
+   //busca simples
    $key = "%{$key}%";
 
    $sql = "SELECT * FROM post 
@@ -111,7 +111,7 @@ function get5Categories($conn){
          $data = $stmt->fetchAll();
          return $data;
    }else {
-       return 0;
+      return [];
    }
 }
 
@@ -126,7 +126,7 @@ function getUserByID($conn, $id){
          $data = $stmt->fetch();
          return $data;
    }else {
-       return 0;
+       return [];
    }
 }
 
@@ -140,7 +140,7 @@ function getAllCategories($conn){
          $data = $stmt->fetchAll();
          return $data;
    }else {
-       return 0;
+       return [];
    }
 }
 

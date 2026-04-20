@@ -164,7 +164,7 @@ if (isset($_GET['post_id'])) {
 							Categoria em destaques
 						</a>
 						<?php foreach ($categories as $category) { ?>
-							<a href="category.php?category_id=<?= $category['id'] ?>"
+							<a href="categoria.php?category_id=<?= $category['id'] ?>"
 								class="list-group-item list-group-item-action">
 								<?php echo $category['category']; ?>
 							</a>
