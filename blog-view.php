@@ -14,7 +14,7 @@ if (isset($_GET['post_id'])) {
 	$id = $_GET['post_id'];
 	$post = getById($conn, $id);
 	$comments = getCommentsByPostID($conn, $id);
-	$categories = get5Categoies($conn);
+	$categories = get5Categories($conn);
 
 	if ($post == 0) {
 		header("Location: blog.php");
@@ -161,7 +161,7 @@ if (isset($_GET['post_id'])) {
 				<aside class="aside-main">
 					<div class="list-group category-aside">
 						<a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-							Categoria
+							Categoria em destaques
 						</a>
 						<?php foreach ($categories as $category) { ?>
 							<a href="category.php?category_id=<?= $category['id'] ?>"

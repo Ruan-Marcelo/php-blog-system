@@ -44,7 +44,7 @@ $notFound = 0;
 	} else {
 		$posts = getAll($conn);
 	}
-	$categories = get5Categoies($conn);
+	$categories = get5Categories($conn);
 	?>
 
 	<div class="container mt-5">
@@ -130,7 +130,7 @@ $notFound = 0;
 					<a href="#"
 						class="list-group-item list-group-item-action active"
 						aria-current="true">
-						Categoria
+						Categoria em destaques
 					</a>
 					<?php foreach ($categories as $category) { ?>
 						<a href="categoria.php?category_id=<?= $category['id'] ?>"

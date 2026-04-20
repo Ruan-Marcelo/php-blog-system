@@ -11,7 +11,7 @@ include_once("admin/data/Post.php");
 include_once("admin/data/Comment.php");
 
 $categories = getAllCategories($conn);
-$categories5 = get5Categoies($conn);
+$categories5 = get5Categories($conn);
 $category = 0;
 ?>
 <!DOCTYPE html>
@@ -140,7 +140,7 @@ $category = 0;
                     <a href="#"
                         class="list-group-item list-group-item-action active"
                         aria-current="true">
-                        Categoria
+                       Categoria em destaques
                     </a>
                     <?php foreach ($categories5 as $category) { ?>
                         <a href="categoria.php?category_id=<?= $category['id'] ?>"
