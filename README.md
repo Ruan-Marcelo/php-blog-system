@@ -1,106 +1,142 @@
 # 📝 Blog Management System (PHP & MySQL)
 
-Sistema de gerenciamento de blog desenvolvido com **PHP puro e MySQL**, permitindo criação, edição e visualização de posts.
+<p align="center">
+  <img src="https://img.shields.io/badge/PHP-8.x-blue?style=for-the-badge&logo=php">
+  <img src="https://img.shields.io/badge/MySQL-Database-orange?style=for-the-badge&logo=mysql">
+  <img src="https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge&logo=bootstrap">
+  <img src="https://img.shields.io/badge/jQuery-AJAX-blue?style=for-the-badge&logo=jquery">
+  <img src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow?style=for-the-badge">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge">
+</p>
+
+---
+
+## 📌 Sobre o Projeto
+
+Sistema completo de gerenciamento de blog desenvolvido com **PHP puro e MySQL**, focado em **simplicidade, organização e prática de desenvolvimento web**.
+
+Este projeto simula um ambiente real de aplicação, incluindo autenticação, CRUD, interação com banco de dados e recursos dinâmicos.
 
 ---
 
 ## 🚀 Funcionalidades
 
-* 🔐 Login de administrador
-* ✍️ Criar, editar e excluir posts (CRUD)
-* 📄 Visualização de posts
-* 🗂️ Organização simples e eficiente
-* 💾 Integração com banco de dados MySQL
+- 🔐 Autenticação de usuários (Login / Logout)
+- 👤 Sistema de sessão para controle de acesso
+- ✍️ CRUD completo de posts (Criar, Editar, Excluir)
+- 💬 Sistema de comentários por post
+- 👍 Sistema de likes dinâmico com AJAX
+- 🔍 Busca de posts
+- 🗂️ Filtro por categorias
+- 📄 Visualização detalhada de posts
+- 📱 Layout responsivo
 
 ---
 
-## 🛠️ Tecnologias utilizadas
+## 🛠️ Tecnologias Utilizadas
 
-* PHP
-* MySQL
-* HTML5
-* CSS3
-* Bootstrap
+| Tecnologia | Uso |
+|----------|-----|
+| 🐘 PHP | Backend |
+| 🗄️ MySQL | Banco de dados |
+| 🌐 HTML5 & CSS3 | Estrutura e estilo |
+| 🎨 Bootstrap | Responsividade |
+| ⚡ JavaScript + jQuery | Interações e AJAX |
 
 ---
 
 ## 📸 Screenshots
 
-### 🏠 Página inicial
-
+### 🏠 Página Inicial
+```bash
 ![Home](screenshots/home.png)
+```
 
 ### ⚙️ Dashboard
-
+```bash
 ![Dashboard](screenshots/dashboard.png)
+```
 
 ---
 
-## ⚙️ Como rodar o projeto
+## ⚙️ Como Rodar o Projeto
 
-1. Clone o repositório:
-
+### 📥 1. Clonar o repositório
 ```bash
 git clone https://github.com/seu-usuario/blog-php-mysql.git
+cd blog-php-mysql
 ```
 
-2. Importe o banco:
-
-* Abra o phpMyAdmin
-* Crie um banco chamado `blog`
-* Importe o arquivo `database/blog.sql`
-
-3. Configure a conexão:
-
-```php
-config/db.php
+### 🗄️ 2. Configurar o banco de dados
+```bash
+- Abra o phpMyAdmin
+- Crie um banco chamado: blog
+- Importe o arquivo: database/blog.sql
 ```
 
-4. Inicie o servidor:
-
-* XAMPP / WAMP / Laragon
-
-5. Acesse:
-
+### 🔧 3. Configurar a conexão
+```bash
+Edite o arquivo: db_conn.php
 ```
+
+```bash
+$sName = "localhost";
+$uName = "root";
+$pass = "";
+$db_name = "blog";
+```
+
+### ▶️ 4. Iniciar o servidor
+```bash
+Use XAMPP, WAMP ou Laragon
+```
+
+### 🌐 5. Acessar no navegador
+```bash
 http://localhost/blog
 ```
 
 ---
 
+## 📈 Melhorias Futuras
 
-
----
-
-## 📈 Melhorias futuras
-
-* Sistema de comentários
-* Upload de imagens
-* Categorias de posts
-* API REST
-* Autenticação segura com password_hash
+- [ ] 🧠 Sistema de tags
+- [ ] 🌐 API REST
+- [ ] 📊 estatísticas
+- [ ] 🔔 Sistema de notificações
 
 ---
 
 ## 📄 Licença
 
-Este projeto está sob a licença MIT.
+Este projeto está sob a licença **MIT**.
 
-## 💡 Inspirações e Base de Estudo
+---
 
-Este projeto foi desenvolvido a partir de estudos práticos utilizando PHP e MySQL, com base em conteúdos educacionais online.
+## 💡 Inspiração e Aprendizado
 
-A principal referência utilizada foi:
+Projeto desenvolvido com base em estudos práticos de desenvolvimento web com PHP e MySQL.
 
-* PHP Blogging Website Tutorial (YouTube)
-  https://www.youtube.com/watch?v=Bcc97YC18Z0
+### 📺 Referência:
+```bash
+https://www.youtube.com/watch?v=Bcc97YC18Z0
+```
 
-A partir dessa base, foram implementadas melhorias significativas, incluindo:
+---
 
-* Organização profissional da estrutura do projeto
-* Melhorias no layout e usabilidade
-* Ajustes de segurança e boas práticas
-* Personalizações no sistema de gerenciamento
+## 🚀 Evoluções Implementadas
 
-Este projeto representa uma evolução do conteúdo estudado, com foco em aplicação prática e desenvolvimento profissional.
+- ✅ Organização profissional de pastas
+- ✅ Sistema de login funcional com sessão
+- ✅ Correção de erros comuns (PDO, includes, paths)
+- ✅ Implementação de likes com AJAX
+- ✅ Sistema de comentários
+- ✅ Melhorias visuais com Bootstrap
+- ✅ Estrutura próxima de projetos reais
 
+---
+
+## 👨‍💻 Autor
+
+**Ruan Luz** 🚀  
+Focado em evolução como desenvolvedor **Full Stack**
