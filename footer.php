@@ -18,7 +18,7 @@
       </div>
       <!-- Contact Section -->
       <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h5>
+        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contato</h5>
         <p><i class="fas fa-home mr-3"></i> Senai SC Joinville Sul2, SC</p>
         <p><i class="fas fa-envelope mr-3"></i> luzruan60@gmail.com</p>
       </div>

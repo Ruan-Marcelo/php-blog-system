@@ -1,3 +1,12 @@
+<?php
+session_start();
+$logged = false;
+if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
+	$logged = true;
+	$user_id = $_SESSION['user_id'];
+}
+$notFound = 0;
+?>
 <!DOCTYPE html>
 <html>
 
@@ -10,6 +19,7 @@
 </head>
 
 <body>
+	<?php include 'navBar.php';?>
 	<div class="d-flex justify-content-center align-items-center vh-100">
 
 		<form class="shadow w-450 p-3"
@@ -43,6 +53,8 @@
 			<a href="login.php" class="link-secondary">Usuario logar</a>
 		</form>
 	</div>
+
+	<?php include 'footer.php'; ?>
 </body>
 
 </html>
