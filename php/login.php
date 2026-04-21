@@ -14,11 +14,11 @@ if (
    $data = "uname=" . $uname;
 
    if (empty($uname)) {
-      $em = "User name is required";
+      $em = "O nome de usuário é obrigatório";
       header("Location: ../login.php?error=$em&$data");
       exit;
    } else if (empty($pass)) {
-      $em = "Password is required";
+      $em = "A senha é obrigatória";
       header("Location: ../login.php?error=$em&$data");
       exit;
    } else {

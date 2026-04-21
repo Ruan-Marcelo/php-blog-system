@@ -23,6 +23,9 @@ if (session_status() === PHP_SESSION_NONE) {
 	          <a class="nav-link" href="blog.php">Blog</a>
 	        </li>
 	        <li class="nav-item">
+	          <a class="nav-link" href="sobre.php">Sobre</a>
+	        </li>
+	        <li class="nav-item">
 	          <a class="nav-link" 
 	             href="categoria.php">
 	             Categoria</a>
