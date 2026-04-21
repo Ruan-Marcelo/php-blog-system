@@ -1,4 +1,4 @@
-# 📝 Blog Management System (PHP & MySQL)
+# 📝 PHP Blog CMS (PHP & MySQL)
 
 <p align="center">
   <img src="https://img.shields.io/badge/PHP-8.x-blue?style=for-the-badge&logo=php">
@@ -13,9 +13,15 @@
 
 ## 📌 Sobre o Projeto
 
-Sistema completo de gerenciamento de blog desenvolvido com **PHP puro e MySQL**, focado em **simplicidade, organização e prática de desenvolvimento web**.
+Sistema web completo de gerenciamento de conteúdo (CMS) desenvolvido com PHP e MySQL, com foco em autenticação segura, controle de sessões, operações CRUD e interações dinâmicas utilizando AJAX.
 
-Este projeto simula um ambiente real de aplicação, incluindo autenticação, CRUD, interação com banco de dados e recursos dinâmicos.
+O projeto simula um ambiente real de aplicação, incluindo painel administrativo, gerenciamento de posts, sistema de comentários e recursos interativos, aproximando-se de sistemas utilizados em produção.
+
+---
+
+## 🎯 Objetivo do Projeto
+
+Este projeto foi desenvolvido com o objetivo de consolidar conhecimentos em desenvolvimento web full stack, simulando um sistema real com boas práticas de organização, segurança e interação com o usuário.
 
 ---
 
@@ -30,6 +36,14 @@ Este projeto simula um ambiente real de aplicação, incluindo autenticação, C
 - 🗂️ Filtro por categorias
 - 📄 Visualização detalhada de posts
 - 📱 Layout responsivo
+
+
+## 🔐 Segurança
+- Senhas armazenadas utilizando hash seguro
+- Controle de acesso baseado em sessão
+- Validação de dados no frontend e backend
+- Proteção contra SQL Injection com consultas preparadas
+- Sanitização de entradas para evitar XSS
 
 ---
 
@@ -63,7 +77,7 @@ Este projeto simula um ambiente real de aplicação, incluindo autenticação, C
 
 ### 📥 1. Clonar o repositório
 ```bash
-git clone https://github.com/seu-usuario/blog-php-mysql.git
+git clone https://github.com/Ruan-Marcelo/php-blog-system.git
 cd blog-php-mysql
 ```
 
