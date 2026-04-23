@@ -100,7 +100,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 
 		<script>
 			var navList = document.getElementById('navList').children;
-			navList.item(2).classList.add("active");
+			navList.item(4).classList.add("active");
 		</script>
 
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

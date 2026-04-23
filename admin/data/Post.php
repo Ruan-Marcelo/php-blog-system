@@ -92,12 +92,9 @@ function getCategoryById($conn, $id){
    $stmt = $conn->prepare($sql);
    $stmt->execute([$id]);
 
-   if($stmt->rowCount() >= 1){
-         $data = $stmt->fetch();
-         return $data;
-   }else {
-       return 0;
-   }
+   $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+   return $data ? $data : null;
 }
 
 //get 5 Categoies 

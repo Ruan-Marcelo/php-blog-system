@@ -60,7 +60,8 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 									<a href="single_post.php?post_id=<?= $comment['post_id'] ?>">
 										<?php
 										$p = getByIdDeep($conn, $comment['post_id']);
-										echo $p['post_title']; ?></a>
+										echo $p['post_title'] ?? 'Post removido';
+										?></a>
 								</td>
 								<td>
 									<?= $comment['comment'] ?>
@@ -68,7 +69,8 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 								<td>
 									<?php
 									$u = getUserByID($conn, $comment['user_id']);
-									echo '@' . (($u != 0 && isset($u['username'])) ? $u['username'] : 'usuário desconhecido'); ?>
+									echo '@' . ($u['username'] ?? 'usuário desconhecido');
+									?>
 								</td>
 								<td>
 									<a href="comment-delete.php?comment_id=<?= $comment['comment_id'] ?>" class="btn btn-danger">Delete</a>

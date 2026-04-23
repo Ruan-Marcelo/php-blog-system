@@ -6,12 +6,7 @@ function getAllComment($conn){
    $stmt = $conn->prepare($sql);
    $stmt->execute();
 
-   if($stmt->rowCount() >= 1){
-   	   $data = $stmt->fetchAll();
-   	   return $data;
-   }else {
-   	 return 0;
-   }
+   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // getById
@@ -20,63 +15,47 @@ function getCommentById($conn, $id){
    $stmt = $conn->prepare($sql);
    $stmt->execute([$id]);
 
-   if($stmt->rowCount() >= 1){
-         $data = $stmt->fetch();
-         return $data;
-   }else {
-       return 0;
-   }
-}
+   $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
+   return $data ?: null;
+}
 function CountByPostID($conn, $id){
-   $sql = "SELECT * FROM comment WHERE post_id=?";
+   $sql = "SELECT COUNT(*) as total FROM comment WHERE post_id=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$id]);
 
-   return $stmt->rowCount();
+   return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
 }
 // LIKE count
 function likeCountByPostID($conn, $id){
-   $sql = "SELECT * FROM post_like WHERE post_id=?";
+   $sql = "SELECT COUNT(*) as total FROM post_like WHERE post_id=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$id]);
 
-   return $stmt->rowCount();
+   return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
 }
 //isliked
 function isLikedByUserID($conn, $post_id, $user_id){
-   $sql = "SELECT * FROM post_like WHERE post_id=? AND liked_by=?";
+   $sql = "SELECT 1 FROM post_like WHERE post_id=? AND liked_by=? LIMIT 1";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$post_id, $user_id]);
 
-   if ($stmt->rowCount() > 0) {
-      return 1;
-   }else return 0;
+   return $stmt->fetch() ? 1 : 0;
 }
 function getCommentsByPostID($conn, $id){
-   $sql = "SELECT * FROM comment WHERE post_id=? ORDER BY comment_id desc";
+   $sql = "SELECT * FROM comment WHERE post_id=? ORDER BY comment_id DESC";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$id]);
 
-   if($stmt->rowCount() >= 1){
-      $data = $stmt->fetchAll();
-      return $data;
-   }else {
-       return 0;
-   }
+   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // Delete By ID
 function deleteCommentById($conn, $id){
    $sql = "DELETE FROM comment WHERE comment_id=?";
    $stmt = $conn->prepare($sql);
-   $res = $stmt->execute([$id]);
 
-   if($res){
-   	   return 1;
-   }else {
-   	 return 0;
-   }
+   return $stmt->execute([$id]);
 }
 function deleteCommentByPostId($conn, $id){
    $sql = "DELETE FROM comment WHERE post_id=?";
@@ -93,11 +72,6 @@ function deleteCommentByPostId($conn, $id){
 function deleteLikeByPostId($conn, $id){
    $sql = "DELETE FROM post_like WHERE post_id=?";
    $stmt = $conn->prepare($sql);
-   $res = $stmt->execute([$id]);
 
-   if($res){
-         return 1;
-   }else {
-       return 0;
-   }
+   return $stmt->execute([$id]);
 }

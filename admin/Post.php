@@ -60,7 +60,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 								<th scope="row"><?= $post['post_id'] ?></th>
 								<td><a href="single_post.php?post_id=<?= $post['post_id'] ?>"><?= $post['post_title'] ?></a></td>
 								<td>
-									<?= $category['category'] ?>
+									<?= isset($category['category']) ? $category['category'] : 'Sem categoria' ?>
 								</td>
 								<td>
 									<i class="fa fa-comment" aria-hidden="true"></i>
