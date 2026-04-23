@@ -5,6 +5,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
     $logged = true;
     $user_id = $_SESSION['user_id'];
 }
+
+include_once("db_conn.php");
+
+$stmt = $conn->prepare("SELECT * FROM banner WHERE active = 1");
+$stmt->execute();
+$banners = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -28,9 +34,54 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
     </header>
 
     <main>
-        <div class="main-banner">
+       <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
 
-        </div>
+    <!-- indicators -->
+    <div class="carousel-indicators">
+
+        <?php foreach ($banners as $index => $banner) { ?>
+            <button type="button"
+                data-bs-target="#mainCarousel"
+                data-bs-slide-to="<?= $index ?>"
+                class="<?= $index == 0 ? 'active' : '' ?>">
+            </button>
+        <?php } ?>
+
+    </div>
+
+    <!-- slides -->
+    <div class="carousel-inner">
+
+        <?php foreach ($banners as $index => $banner) { ?>
+
+            <div class="carousel-item <?= $index == 0 ? 'active' : '' ?>">
+
+                <img src="upload/banners/<?= $banner['image'] ?>"
+                     class="d-block w-100"
+                     style="height: 450px; object-fit: cover;">
+
+                <?php if (!empty($banner['title'])) { ?>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5><?= htmlspecialchars($banner['title']) ?></h5>
+                    </div>
+                <?php } ?>
+
+            </div>
+
+        <?php } ?>
+
+    </div>
+
+    <!-- controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+
+</div>
     </main>
 
 
