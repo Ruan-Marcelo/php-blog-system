@@ -35,6 +35,12 @@
 					</a>
 				</li>
 				<li>
+					<a href="animals.php">
+						<i class="fa fa-heart" aria-hidden="true"></i>
+						<span>Animais</span>
+					</a>
+				</li>
+				<li>
 					<a href="Categoria.php">
 						<i class="fa fa-window-restore" aria-hidden="true"></i>
 						<span>Categorias</span>

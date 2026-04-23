@@ -30,6 +30,11 @@ if (session_status() === PHP_SESSION_NONE) {
 	             href="categoria.php">
 	             Categoria</a>
 	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" 
+	             href="animals.php">
+	             Animais</a>
+	        </li>
 	         <?php 
                if ($logged) {
 	         ?>
