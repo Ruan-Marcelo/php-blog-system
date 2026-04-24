@@ -36,11 +36,11 @@ if (
             }
         }
 
-        header("Location: ../animals.php?success=Animal excluído com sucesso!");
+        header("Location: animals.php?success=Animal excluído com sucesso!");
         exit;
 
     } else {
-        header("Location: ../animals.php?error=Erro ao excluir animal");
+        header("Location: animals.php?error=Erro ao excluir animal");
         exit;
     }
 
