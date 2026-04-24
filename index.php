@@ -22,74 +22,116 @@ $banners = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- bootstrap icon -->
+
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <!-- css -->
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
+    <!-- Seu CSS -->
     <link rel="stylesheet" href="assets/CSS/style.css">
+
+    <style>
+        .swiper {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .caption h5 {
+            margin: 0;
+            color: #fff;
+        }
+    </style>
 </head>
 
-<body class="">
+<body>
+
     <header>
         <?php include 'navbar.php'; ?>
     </header>
 
     <main>
-       <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
 
-    <!-- indicators -->
-    <div class="carousel-indicators">
+        <!-- (SWIPER) -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
 
-        <?php foreach ($banners as $index => $banner) { ?>
-            <button type="button"
-                data-bs-target="#mainCarousel"
-                data-bs-slide-to="<?= $index ?>"
-                class="<?= $index == 0 ? 'active' : '' ?>">
-            </button>
-        <?php } ?>
+                <?php foreach ($banners as $banner) { ?>
+                    <div class="swiper-slide">
+                        <img src="upload/banners/<?= $banner['image'] ?>" alt="Banner">
 
-    </div>
-
-    <!-- slides -->
-    <div class="carousel-inner">
-
-        <?php foreach ($banners as $index => $banner) { ?>
-
-            <div class="carousel-item <?= $index == 0 ? 'active' : '' ?>">
-
-                <img src="upload/banners/<?= $banner['image'] ?>"
-                     class="d-block w-100"
-                     style="height: 450px; object-fit: cover;">
-
-                <?php if (!empty($banner['title'])) { ?>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5><?= htmlspecialchars($banner['title']) ?></h5>
+                        <?php if (!empty($banner['title'])) { ?>
+                            <div class="caption">
+                                <h5><?= htmlspecialchars($banner['title']) ?></h5>
+                            </div>
+                        <?php } ?>
                     </div>
                 <?php } ?>
 
             </div>
 
-        <?php } ?>
+            <!-- Controles -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
 
-    </div>
-
-    <!-- controls -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </button>
-
-    <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </button>
-
-</div>
     </main>
 
-
-
-
     <?php include 'footer.php'; ?>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+
 </body>
 
 </html>

@@ -1,23 +1,7 @@
 img {
   max-width: 100%;
 }
-.main-banner {
-  width: 100%;
-  height: 50vh;
-  overflow: hidden;
-  position: relative;
-}
-.carousel-inner img {
-  width: 100%;
-  height: 50vh;
-  object-fit: cover;
-  filter: brightness(0.9);
-}
-.carousel-caption {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 10px 20px;
-  border-radius: 10px;
-}
+/*  */
 .main-blog-card {
   width: 90%;
 }
