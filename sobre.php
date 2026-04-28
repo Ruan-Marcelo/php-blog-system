@@ -47,7 +47,7 @@ $notFound = 0;
 
 <body>
 	<?php
-	include 'navBar.php';
+	include 'navbar.php';
 	include_once("admin/data/Post.php");
 	include_once("admin/data/Comment.php");
 	include_once("db_conn.php");

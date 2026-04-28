@@ -19,7 +19,7 @@ $notFound = 0;
 </head>
 
 <body>
-	<?php include 'navBar.php'; ?>
+	<?php include 'navbar.php'; ?>
 	<div class="login-container">
 		<div class="login-box">
 			<form class="login-form"

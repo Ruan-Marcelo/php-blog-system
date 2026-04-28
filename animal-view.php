@@ -38,7 +38,7 @@ if (!$animal) {
 
 <body>
 
-<?php include 'navBar.php'; ?>
+<?php include 'navbar.php'; ?>
 
 <div class="container mt-5">
 

@@ -45,7 +45,7 @@ $category = 0;
 
 <body>
     <?php
-    include 'navBar.php';
+    include 'navbar.php';
     ?>
     <div class="container mt-5">
         <h1 class="display-4 mb-4 fs-3">

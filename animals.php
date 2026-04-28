@@ -26,7 +26,7 @@ $notFound = 0;
 
 	$animals = getAllAnimals($conn);
 	?>
-	<?php include 'navBar.php'; ?>
+	<?php include 'navbar.php'; ?>
 
 	<div class="container mt-5">
 
