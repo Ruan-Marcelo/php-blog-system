@@ -23,7 +23,7 @@ if (isset($key) && $key == "hhdsfs1263z") {
 			</div>
 			<ul id="navList">
 				<li>
-					<a href="Users.php">
+					<a href="users.php">
 						<i class="fa fa-users" aria-hidden="true"></i>
 						<span>Usuarios</span>
 					</a>
