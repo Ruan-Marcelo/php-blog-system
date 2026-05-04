@@ -59,7 +59,7 @@ if (isset($key) && $key == "hhdsfs1263z") {
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="Configuracao.php">
 						<i class="fa fa-cog" aria-hidden="true"></i>
 						<span>Configurações</span>
 					</a>
