@@ -6,6 +6,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
 	$user_id = $_SESSION['user_id'];
 }
 $notFound = 0;
+include_once("db_conn.php");
+include_once("site_config.php");
+$siteSettings = get_site_settings($conn);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,7 +21,7 @@ $notFound = 0;
 		if (isset($_GET['search'])) {
 			echo "search '" . htmlspecialchars($_GET['search']) . "'";
 		} else {
-			echo "Blog Page";
+			echo htmlspecialchars($siteSettings['site_name']) . " | Blog";
 		} ?>
 	</title>
 	<!-- Bootstrap 5 -->
@@ -73,7 +76,7 @@ $notFound = 0;
 									<div class="react-btns">
 										<?php
 										$post_id = $post['post_id'];
-										if ($logged) {
+										if ($siteSettings['likes_enabled'] === '1' && $logged) {
 											$liked = isLikedByUserID($conn, $post_id, $user_id);
 
 
@@ -89,19 +92,23 @@ $notFound = 0;
 													liked="0"
 													aria-hidden="true"></i>
 											<?php }
-										} else { ?>
+										} else if ($siteSettings['likes_enabled'] === '1') { ?>
 											<i class="bi bi-hand-thumbs-up like-btn"></i>
 										<?php } ?>
-										Likes (
-										<span><?php
-												echo likeCountByPostID($conn, $post['post_id']);
-												?></span> )
+										<?php if ($siteSettings['likes_enabled'] === '1') { ?>
+											Likes (
+											<span><?php
+													echo likeCountByPostID($conn, $post['post_id']);
+													?></span> )
+										<?php } ?>
 										<a href="blog-view.php?post_id=<?= $post['post_id'] ?>#comments">
-											<i class="bi bi-chat-fill"></i></i> Comentarios (
-											<?php
-											echo CountByPostID($conn, $post['post_id']);
-											?>
-											)
+											<?php if ($siteSettings['comments_enabled'] === '1') { ?>
+												<i class="bi bi-chat-fill"></i></i> Comentarios (
+												<?php
+												echo CountByPostID($conn, $post['post_id']);
+												?>
+												)
+											<?php } ?>
 										</a>
 									</div>
 									<small class="text-body-secondary"><?= $post['crated_at'] ?></small>
@@ -158,7 +165,7 @@ $notFound = 0;
 					$(this).attr('liked', '1');
 					$(this).addClass('liked');
 				}
-				$(this).next().load("ajax/like-unlike.php", {
+				$(this).next().load("assets/ajax/like-unlike.php", {
 					post_id: post_id
 				});
 			});

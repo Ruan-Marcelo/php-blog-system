@@ -7,6 +7,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
 }
 
 include_once("db_conn.php");
+include_once("site_config.php");
+
+$siteSettings = get_site_settings($conn);
 
 $stmt = $conn->prepare("SELECT * FROM banner WHERE active = 1");
 $stmt->execute();
@@ -18,7 +21,7 @@ $banners = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title><?= htmlspecialchars($siteSettings['site_name']) ?></title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -35,8 +38,8 @@ $banners = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <style>
         .swiper {
             width: 100%;
-            aspect-ratio: 16 / 9;
-            background: #000;
+            height: clamp(280px, 48vw, 620px);
+            background: #111;
         }
 
         .swiper-slide {
@@ -49,20 +52,13 @@ $banners = $stmt->fetchAll(PDO::FETCH_ASSOC);
         .swiper-slide img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
 
-        .caption {
-            position: absolute;
-            bottom: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px 20px;
-            border-radius: 10px;
-        }
-
-        .caption h5 {
-            margin: 0;
-            color: #fff;
+        @media (max-width: 768px) {
+            .swiper {
+                height: 300px;
+            }
         }
     </style>
 </head>
@@ -82,12 +78,6 @@ $banners = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php foreach ($banners as $banner) { ?>
                     <div class="swiper-slide">
                         <img src="upload/banners/<?= $banner['image'] ?>" alt="Banner">
-
-                        <?php if (!empty($banner['title'])) { ?>
-                            <div class="caption">
-                                <h5><?= htmlspecialchars($banner['title']) ?></h5>
-                            </div>
-                        <?php } ?>
                     </div>
                 <?php } ?>
 

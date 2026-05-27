@@ -23,14 +23,17 @@ $notFound = 0;
 	<?php
 	include_once("db_conn.php");
 	include_once("admin/data/Animal.php");
+	include_once("site_config.php");
 
 	$animals = getAllAnimals($conn);
+	$siteSettings = get_site_settings($conn);
 	?>
 	<?php include 'navbar.php'; ?>
 
 	<div class="container mt-5">
 
-		<h1 class="mb-4">Lista de Animais</h1>
+		<h1 class="mb-2">Animais para adocao</h1>
+		<p class="text-muted mb-4"><?= htmlspecialchars($siteSettings['footer_text']) ?></p>
 
 		<?php if (!empty($animals)) { ?>
 

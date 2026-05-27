@@ -9,9 +9,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
 include_once("db_conn.php");
 include_once("admin/data/Post.php");
 include_once("admin/data/Comment.php");
+include_once("site_config.php");
 
 $categories = getAllCategories($conn);
 $categories5 = get5Categories($conn);
+$siteSettings = get_site_settings($conn);
 $category = 0;
 ?>
 <!DOCTYPE html>
@@ -89,7 +91,7 @@ $category = 0;
                                         <div class="react-btns">
                                             <?php
                                             $post_id = $post['post_id'];
-                                            if ($logged) {
+                                            if ($siteSettings['likes_enabled'] === '1' && $logged) {
                                                 $liked = isLikedByUserID($conn, $post_id, $user_id);
 
 
@@ -105,19 +107,23 @@ $category = 0;
                                                         liked="0"
                                                         aria-hidden="true"></i>
                                                 <?php }
-                                            } else { ?>
+                                            } else if ($siteSettings['likes_enabled'] === '1') { ?>
                                                <i class="bi bi-hand-thumbs-up like-btn"></i>
                                             <?php } ?>
-                                            Likes (
-                                            <span><?php
-                                                    echo likeCountByPostID($conn, $post['post_id']);
-                                                    ?></span> )
+                                            <?php if ($siteSettings['likes_enabled'] === '1') { ?>
+                                                Likes (
+                                                <span><?php
+                                                        echo likeCountByPostID($conn, $post['post_id']);
+                                                        ?></span> )
+                                            <?php } ?>
                                             <a href="blog-view.php?post_id=<?= $post['post_id'] ?>#comments">
-                                               <i class="bi bi-chat-fill"></i></i>  Comentarios (
-                                                <?php
-                                                echo CountByPostID($conn, $post['post_id']);
-                                                ?>
-                                                )
+                                               <?php if ($siteSettings['comments_enabled'] === '1') { ?>
+                                                   <i class="bi bi-chat-fill"></i></i>  Comentarios (
+                                                    <?php
+                                                    echo CountByPostID($conn, $post['post_id']);
+                                                    ?>
+                                                    )
+                                                <?php } ?>
                                             </a>
                                         </div>
                                         <small class="text-body-secondary"><?= $post['crated_at'] ?></small>

@@ -6,6 +6,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
 	$user_id = $_SESSION['user_id'];
 }
 $notFound = 0;
+include_once("db_conn.php");
+include_once("site_config.php");
+$siteSettings = get_site_settings($conn);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,7 +21,7 @@ $notFound = 0;
 		if (isset($_GET['search'])) {
 			echo "search '" . htmlspecialchars($_GET['search']) . "'";
 		} else {
-			echo "Blog Page";
+			echo htmlspecialchars($siteSettings['site_name']) . " | Sobre";
 		} ?>
 	</title>
 	<!-- Bootstrap 5 -->
@@ -67,8 +70,8 @@ $notFound = 0;
 
 		<!-- Título -->
 		<div class="text-center mb-5">
-			<h2 class="fw-bold">Apoio Pet 🐾</h2>
-			<p class="text-muted">Cuidando de quem não pode pedir ajuda</p>
+			<h2 class="fw-bold"><?= htmlspecialchars($siteSettings['site_name']) ?></h2>
+			<p class="text-muted"><?= htmlspecialchars($siteSettings['site_description']) ?></p>
 		</div>
 
 		<!-- Sobre -->
@@ -81,7 +84,7 @@ $notFound = 0;
 			<div class="col-md-6">
 				<h4>Sobre o projeto</h4>
 				<p>
-					O <strong>Apoio Pet</strong> nasceu com o objetivo de ajudar animais em situação de rua,
+					O <strong><?= htmlspecialchars($siteSettings['site_name']) ?></strong> nasceu com o objetivo de ajudar animais em situação de rua,
 					promovendo conscientização, apoio a ONGs e incentivo à adoção responsável.
 				</p>
 				<p>

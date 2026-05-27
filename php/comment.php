@@ -2,8 +2,15 @@
 
 session_start();
 include "../db_conn.php";
+include "../site_config.php";
+
+$siteSettings = get_site_settings($conn);
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['username'])){
+	if ($siteSettings['comments_enabled'] !== '1') {
+		header("Location: ../blog.php");
+		exit;
+	}
 
 	if (isset($_POST['comment']) && isset($_POST['post_id'])) {
         $comment = $_POST['comment'];

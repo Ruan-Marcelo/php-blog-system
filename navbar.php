@@ -2,13 +2,17 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+include_once("db_conn.php");
+include_once("site_config.php");
+$siteSettings = get_site_settings($conn);
 ?>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white ">
       <div class="container-fluid">
 
           <a class="navbar-brand" href="#">
               <img src="./assets/imgs/icon.png" width="100" alt="cachorro do apoio pet">
-              APOIO PET
+              <?= htmlspecialchars($siteSettings['site_name']) ?>
           </a>
 
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +62,7 @@ if (session_status() === PHP_SESSION_NONE) {
                } else {
 	         ?>
 	         <li class="nav-item">
-	          <a class="nav-link" href="login.php">entrar | Signup</a>
+	          <a class="nav-link" href="login.php">Entrar | Signup</a>
 	        </li>
 	         <?php 
                }

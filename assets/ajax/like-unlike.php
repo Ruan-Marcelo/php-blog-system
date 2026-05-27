@@ -7,8 +7,15 @@ if (isset($_SESSION['user_id'])  &&
     isset($_POST['post_id'])){
     
     include "../../db_conn.php";
+	include "../../site_config.php";
 	$user_id = $_SESSION['user_id'];
 	$post_id = $_POST['post_id'];
+	$siteSettings = get_site_settings($conn);
+
+	if ($siteSettings['likes_enabled'] !== '1') {
+		echo "...";
+		exit;
+	}
 	if (empty($post_id)) {
 		echo "...";
 	}else {

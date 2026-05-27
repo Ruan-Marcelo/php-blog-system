@@ -11,6 +11,8 @@ if (isset($_GET['post_id'])) {
 	include_once("admin/data/Post.php");
 	include_once("admin/data/Comment.php");
 	include_once("db_conn.php");
+	include_once("site_config.php");
+	$siteSettings = get_site_settings($conn);
 	$id = $_GET['post_id'];
 	$post = getById($conn, $id);
 	$comments = getCommentsByPostID($conn, $id);
@@ -27,7 +29,7 @@ if (isset($_GET['post_id'])) {
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Blog - <?= $post['post_title'] ?></title>
+		<title><?= htmlspecialchars($siteSettings['site_name']) ?> - <?= htmlspecialchars($post['post_title']) ?></title>
 		<!-- Bootstrap 5 -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 		<!-- bootstrap icon -->
@@ -57,7 +59,7 @@ if (isset($_GET['post_id'])) {
 									<?php
 									$post_id = $post['post_id'];
 
-									if ($logged) {
+									if ($siteSettings['likes_enabled'] === '1' && $logged) {
 										$liked = isLikedByUserID($conn, $post_id, $user_id);
 
 										if ($liked) {
@@ -70,24 +72,28 @@ if (isset($_GET['post_id'])) {
 												post-id="<?= $post_id ?>"
 												liked="0"></i>
 										<?php }
-									} else { ?>
+									} else if ($siteSettings['likes_enabled'] === '1') { ?>
 										<i class="bi bi-hand-thumbs-up"></i>
 									<?php } ?>
 
-									Likes (
-									<span><?= likeCountByPostID($conn, $post['post_id']); ?></span>
-									)
-									<i class="bi bi-chat-fill"></i></i> Comentarios (
-									<?php
-									echo CountByPostID($conn, $post['post_id']);
-									?>
-									)
+									<?php if ($siteSettings['likes_enabled'] === '1') { ?>
+										Likes (
+										<span><?= likeCountByPostID($conn, $post['post_id']); ?></span>
+										)
+									<?php } ?>
+									<?php if ($siteSettings['comments_enabled'] === '1') { ?>
+										<i class="bi bi-chat-fill"></i></i> Comentarios (
+										<?php
+										echo CountByPostID($conn, $post['post_id']);
+										?>
+										)
+									<?php } ?>
 
 								</div>
 								<small class="text-body-secondary"><?= $post['crated_at'] ?></small>
 							</div>
 
-							<?php if (isset($_SESSION['user_id'])) { ?>
+							<?php if ($siteSettings['comments_enabled'] === '1' && isset($_SESSION['user_id'])) { ?>
 
 								<form action="php/comment.php"
 									method="post"
@@ -122,7 +128,7 @@ if (isset($_GET['post_id'])) {
 									</button>
 								</form>
 
-							<?php } else { ?>
+							<?php } else if ($siteSettings['comments_enabled'] === '1') { ?>
 
 								<div class="alert alert-warning mt-3">
 									<a href="login.php" class="btn btn-primary">
@@ -131,6 +137,7 @@ if (isset($_GET['post_id'])) {
 								</div>
 
 							<?php } ?>
+							<?php if ($siteSettings['comments_enabled'] === '1') { ?>
 							<hr>
 							<div>
 								<div class="comments">
@@ -153,6 +160,7 @@ if (isset($_GET['post_id'])) {
 									} ?>
 								</div>
 							</div>
+							<?php } ?>
 						</div>
 					</div>
 
