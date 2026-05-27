@@ -18,9 +18,10 @@ if (isset($_SESSION['admin_id']) &&
       header("Location: post.php?success=$sm");
       exit;
   }else {
-  	$sql = "UPDATE post SET publish=0";
+  	$sql = "UPDATE post SET publish=0
+	          WHERE post_id=?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$post_id]);
     $sm = "Despublicar com sucesso!"; 
     header("Location: post.php?success=$sm");
     exit;
