@@ -5,7 +5,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
 	$logged = true;
 	$user_id = $_SESSION['user_id'];
 }
-$notFound = 0;
+
 include_once("db_conn.php");
 include_once("site_config.php");
 $siteSettings = get_site_settings($conn);
@@ -16,204 +16,236 @@ $siteSettings = get_site_settings($conn);
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>
-		<?php
-		if (isset($_GET['search'])) {
-			echo "search '" . htmlspecialchars($_GET['search']) . "'";
-		} else {
-			echo htmlspecialchars($siteSettings['site_name']) . " | Sobre";
-		} ?>
-	</title>
-	<!-- Bootstrap 5 -->
+	<title><?= htmlspecialchars($siteSettings['site_name']) ?> | Sobre</title>
+
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-	<!-- bootstrap icon -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-	<!-- css -->
 	<link rel="stylesheet" href="assets/CSS/style.css">
+
+	<style>
+		.about-hero {
+			background: #f4f8f3;
+			padding: 56px 0;
+		}
+
+		.about-hero h1 {
+			font-size: clamp(2rem, 5vw, 4rem);
+			line-height: 1.05;
+		}
+
+		.about-hero img {
+			width: 100%;
+			aspect-ratio: 16 / 10;
+			object-fit: cover;
+			border-radius: 8px;
+		}
+
+		.about-kicker {
+			color: #198754;
+			font-weight: 700;
+			letter-spacing: .04em;
+			text-transform: uppercase;
+			font-size: .8rem;
+		}
+
+		.info-card {
+			border: 1px solid #e6ece4;
+			border-radius: 8px;
+			padding: 24px;
+			height: 100%;
+			background: #fff;
+		}
+
+		.info-card i {
+			font-size: 2rem;
+			color: #198754;
+		}
+
+		.action-band {
+			background: #1f2933;
+			color: #fff;
+			padding: 48px 0;
+		}
+
+		.action-item {
+			border-left: 3px solid #ffc107;
+			padding-left: 18px;
+			height: 100%;
+		}
+
+		.partner-card {
+			border: 1px solid #e6ece4;
+			border-radius: 8px;
+			overflow: hidden;
+			height: 100%;
+			background: #fff;
+		}
+
+		.partner-card iframe {
+			width: 100%;
+			height: 180px;
+			border: 0;
+		}
+
+		.contact-box {
+			background: #f8faf7;
+			border-radius: 8px;
+			padding: 32px;
+		}
+	</style>
 </head>
-<style>
-	.card iframe {
-		border-top-left-radius: 12px;
-		border-top-right-radius: 12px;
-	}
-
-	.card {
-		border-radius: 12px;
-		overflow: hidden;
-		transition: 0.3s;
-	}
-
-	.card:hover {
-		transform: translateY(-5px);
-	}
-</style>
 
 <body>
-	<?php
-	include 'navbar.php';
-	include_once("admin/data/Post.php");
-	include_once("admin/data/Comment.php");
-	include_once("db_conn.php");
-	if (isset($_GET['search'])) {
-		$key = $_GET['search'];
-		$posts = search($conn, $key);
-		if ($posts == 0) {
-			$notFound = 1;
-		}
-	} else {
-		$posts = getAll($conn);
-	}
-	$categories = get5Categories($conn);
-	?>
+	<?php include 'navbar.php'; ?>
 
-	<div class="container my-5">
+	<section class="about-hero">
+		<div class="container">
+			<div class="row align-items-center g-5">
+				<div class="col-lg-6">
+					<div class="about-kicker mb-3">Sobre o projeto</div>
+					<h1 class="fw-bold mb-4"><?= htmlspecialchars($siteSettings['site_name']) ?></h1>
+					<p class="lead mb-4"><?= htmlspecialchars($siteSettings['site_description']) ?></p>
+					<p class="mb-4">
+						O projeto nasceu para aproximar pessoas, informacao e a causa animal.
+						Ajudamos a divulgar adocao responsavel, cuidados basicos, denuncia de maus-tratos
+						e formas praticas de apoiar quem atua no resgate.
+					</p>
+					<div class="d-flex flex-wrap gap-2">
+						<a href="animals.php" class="btn btn-success">Ver animais</a>
+						<a href="blog.php" class="btn btn-outline-success">Ler o blog</a>
+					</div>
+				</div>
 
-		<!-- Título -->
-		<div class="text-center mb-5">
-			<h2 class="fw-bold"><?= htmlspecialchars($siteSettings['site_name']) ?></h2>
-			<p class="text-muted"><?= htmlspecialchars($siteSettings['site_description']) ?></p>
-		</div>
-
-		<!-- Sobre -->
-		<div class="row align-items-center mb-5">
-			<div class="col-md-6">
-				<img src="https://cdn-icons-png.flaticon.com/512/616/616408.png"
-					class="img-fluid"
-					style="max-width: 300px;">
-			</div>
-			<div class="col-md-6">
-				<h4>Sobre o projeto</h4>
-				<p>
-					O <strong><?= htmlspecialchars($siteSettings['site_name']) ?></strong> nasceu com o objetivo de ajudar animais em situação de rua,
-					promovendo conscientização, apoio a ONGs e incentivo à adoção responsável.
-				</p>
-				<p>
-					Acreditamos que pequenas ações podem transformar vidas — tanto dos animais quanto das pessoas.
-				</p>
+				<div class="col-lg-6">
+					<img src="upload/banners/banner-adocao-responsavel.png" alt="Voluntarios cuidando de animais resgatados">
+				</div>
 			</div>
 		</div>
+	</section>
 
-		<!-- Missão / Visão / Valores -->
-		<div class="row text-center mb-5">
-
-			<div class="col-md-4 mb-3">
-				<div class="card p-3 shadow-sm h-100">
-					<h5>Missão</h5>
-					<p>Ajudar animais abandonados e promover o bem-estar animal.</p>
+	<section class="container my-5">
+		<div class="row g-4">
+			<div class="col-md-4">
+				<div class="info-card">
+					<i class="bi bi-heart-pulse mb-3 d-block"></i>
+					<h5>Missao</h5>
+					<p class="mb-0">Fortalecer a protecao animal com conteudo claro, acolhimento e divulgacao de pets que precisam de um lar.</p>
 				</div>
 			</div>
 
-			<div class="col-md-4 mb-3">
-				<div class="card p-3 shadow-sm h-100">
-					<h5>Visão</h5>
-					<p>Construir um mundo com menos abandono e mais amor pelos animais.</p>
+			<div class="col-md-4">
+				<div class="info-card">
+					<i class="bi bi-house-heart mb-3 d-block"></i>
+					<h5>Visao</h5>
+					<p class="mb-0">Construir uma rede local mais preparada para adotar, cuidar, denunciar e apoiar iniciativas de resgate.</p>
 				</div>
 			</div>
 
-			<div class="col-md-4 mb-3">
-				<div class="card p-3 shadow-sm h-100">
+			<div class="col-md-4">
+				<div class="info-card">
+					<i class="bi bi-shield-check mb-3 d-block"></i>
 					<h5>Valores</h5>
-					<p>Respeito, responsabilidade e cuidado com todos os seres vivos.</p>
+					<p class="mb-0">Responsabilidade, respeito, cuidado continuo e compromisso com o bem-estar dos animais.</p>
 				</div>
 			</div>
-
 		</div>
+	</section>
 
-		<!-- Como ajudar -->
-		<div class="text-center mb-4">
-			<h4>Como você pode ajudar</h4>
-		</div>
+	<section class="action-band">
+		<div class="container">
+			<div class="row g-4 align-items-start">
+				<div class="col-lg-4">
+					<div class="about-kicker text-warning mb-2">Como ajudar</div>
+					<h2 class="fw-bold">Pequenas atitudes fazem diferenca.</h2>
+				</div>
 
-		<div class="row text-center">
+				<div class="col-md-4 col-lg-2">
+					<div class="action-item">
+						<h6>Adote</h6>
+						<p class="mb-0">Escolha com responsabilidade e prepare sua casa antes da chegada.</p>
+					</div>
+				</div>
 
-			<div class="col-md-4 mb-3">
-				<div class="card shadow-sm p-3 h-100">
-					<h6>🐶 Adote com responsabilidade</h6>
-					<p>Dê um lar para um animal que precisa de amor.</p>
+				<div class="col-md-4 col-lg-3">
+					<div class="action-item">
+						<h6>Compartilhe</h6>
+						<p class="mb-0">Divulgue animais, campanhas e informacoes confiaveis.</p>
+					</div>
+				</div>
+
+				<div class="col-md-4 col-lg-3">
+					<div class="action-item">
+						<h6>Apoie</h6>
+						<p class="mb-0">Doe racao, ofereca lar temporario ou ajude projetos da sua cidade.</p>
+					</div>
 				</div>
 			</div>
+		</div>
+	</section>
 
-			<div class="col-md-4 mb-3">
-				<div class="card shadow-sm p-3 h-100">
-					<h6>🤝 Seja voluntário</h6>
-					<p>Ajude ONGs e projetos locais da sua cidade.</p>
-				</div>
+	<section class="container my-5">
+		<div class="row align-items-end mb-4">
+			<div class="col-md-8">
+				<div class="about-kicker mb-2">Rede de apoio</div>
+				<h2 class="fw-bold mb-0">Locais e projetos para conhecer</h2>
 			</div>
-
-			<div class="col-md-4 mb-3">
-				<div class="card shadow-sm p-3 h-100">
-					<h6>📢 Compartilhe</h6>
-					<p>Divulgue a causa e ajude mais pessoas a conhecerem o projeto.</p>
-				</div>
+			<div class="col-md-4 text-md-end mt-3 mt-md-0">
+				<a href="animals.php" class="btn btn-outline-success">Animais disponiveis</a>
 			</div>
-
 		</div>
 
-	</div>
-	<div class="container my-5">
-
-		<div class="text-center mb-5">
-			<h4>ONGs Parceiras 📍</h4>
-			<p class="text-muted">Conheça locais que ajudam animais perto de você</p>
-		</div>
-
-		<div class="row">
-
-			<!-- ONG 1 -->
-			<div class="col-md-4 mb-4">
-				<div class="card shadow-sm h-100">
-					<iframe
-						src="https://www.google.com/maps?q=ong+animais&output=embed"
-						width="100%"
-						height="200"
-						style="border:0;">
-					</iframe>
-					<div class="card-body">
-						<h5>ONG Amor Animal</h5>
-						<p>Resgate e cuidado de animais abandonados.</p>
+		<div class="row g-4">
+			<div class="col-md-4">
+				<div class="partner-card">
+					<iframe src="https://www.google.com/maps?q=ong+animais+joinville&output=embed"></iframe>
+					<div class="p-3">
+						<h5>ONGs de resgate</h5>
+						<p class="mb-0">Projetos que acolhem, tratam e encaminham animais para adocao responsavel.</p>
 					</div>
 				</div>
 			</div>
 
-			<!-- ONG 2 -->
-			<div class="col-md-4 mb-4">
-				<div class="card shadow-sm h-100">
-					<iframe
-						src="https://www.google.com/maps?q=abrigo+de+animais&output=embed"
-						width="100%"
-						height="200"
-						style="border:0;">
-					</iframe>
-					<div class="card-body">
-						<h5>Patinhas Felizes</h5>
-						<p>Abrigo e adoção responsável de pets.</p>
+			<div class="col-md-4">
+				<div class="partner-card">
+					<iframe src="https://www.google.com/maps?q=clinica+veterinaria+popular+joinville&output=embed"></iframe>
+					<div class="p-3">
+						<h5>Cuidados veterinarios</h5>
+						<p class="mb-0">Apoio para vacinacao, castracao, consultas e orientacoes de saude animal.</p>
 					</div>
 				</div>
 			</div>
 
-			<!-- ONG 3 -->
-			<div class="col-md-4 mb-4">
-				<div class="card shadow-sm h-100">
-					<iframe
-						src="https://www.google.com/maps?q=protecao+animal&output=embed"
-						width="100%"
-						height="200"
-						style="border:0;">
-					</iframe>
-					<div class="card-body">
-						<h5>Projeto Vida Pet</h5>
-						<p>Ajuda veterinária e campanhas de conscientização.</p>
+			<div class="col-md-4">
+				<div class="partner-card">
+					<iframe src="https://www.google.com/maps?q=protecao+animal+joinville&output=embed"></iframe>
+					<div class="p-3">
+						<h5>Protecao animal</h5>
+						<p class="mb-0">Canais e iniciativas que ajudam em casos de abandono e maus-tratos.</p>
 					</div>
 				</div>
 			</div>
-
 		</div>
-	</div>
+	</section>
+
+	<section class="container mb-5">
+		<div class="contact-box">
+			<div class="row align-items-center g-4">
+				<div class="col-lg-7">
+					<h2 class="fw-bold">Fale com o <?= htmlspecialchars($siteSettings['site_name']) ?></h2>
+					<p class="mb-0">Use os contatos cadastrados no painel para receber mensagens, parcerias e pedidos de divulgacao.</p>
+				</div>
+
+				<div class="col-lg-5">
+					<p class="mb-2"><strong>E-mail:</strong> <?= htmlspecialchars($siteSettings['contact_email']) ?></p>
+					<p class="mb-2"><strong>Telefone:</strong> <?= htmlspecialchars($siteSettings['contact_phone']) ?></p>
+					<p class="mb-0"><strong>WhatsApp:</strong> <?= htmlspecialchars($siteSettings['whatsapp']) ?></p>
+				</div>
+			</div>
+		</div>
+	</section>
 
 	<?php include 'footer.php'; ?>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-	<!-- Bootstrap JS -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
