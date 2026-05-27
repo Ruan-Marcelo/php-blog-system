@@ -41,7 +41,7 @@ $siteSettings = get_site_settings($conn);
 		}
 
 		.about-kicker {
-			color: #198754;
+			color: black;
 			font-weight: 700;
 			letter-spacing: .04em;
 			text-transform: uppercase;
@@ -58,17 +58,17 @@ $siteSettings = get_site_settings($conn);
 
 		.info-card i {
 			font-size: 2rem;
-			color: #198754;
+			color: black;
 		}
 
 		.action-band {
-			background: #1f2933;
+			background: #212529;
 			color: #fff;
 			padding: 48px 0;
 		}
 
 		.action-item {
-			border-left: 3px solid #ffc107;
+			border-left: 3px solid white;
 			padding-left: 18px;
 			height: 100%;
 		}
@@ -111,8 +111,8 @@ $siteSettings = get_site_settings($conn);
 						e formas praticas de apoiar quem atua no resgate.
 					</p>
 					<div class="d-flex flex-wrap gap-2">
-						<a href="animals.php" class="btn btn-success">Ver animais</a>
-						<a href="blog.php" class="btn btn-outline-success">Ler o blog</a>
+						<a href="animals.php" class="btn btn-dark">Ver animais</a>
+						<a href="blog.php" class="btn btn-outline-primary">Ler o blog</a>
 					</div>
 				</div>
 
@@ -155,7 +155,7 @@ $siteSettings = get_site_settings($conn);
 		<div class="container">
 			<div class="row g-4 align-items-start">
 				<div class="col-lg-4">
-					<div class="about-kicker text-warning mb-2">Como ajudar</div>
+					<div class="about-kicker text-primary mb-2">Como ajudar</div>
 					<h2 class="fw-bold">Pequenas atitudes fazem diferenca.</h2>
 				</div>
 
