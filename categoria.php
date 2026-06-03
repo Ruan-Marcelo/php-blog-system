@@ -162,6 +162,31 @@ $category = 0;
 
     </div>
     <?php include 'footer.php'; ?>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".like-btn").click(function() {
+                var post_id = $(this).attr('post-id');
+                var liked = $(this).attr('liked');
+                if (!post_id) {
+                    window.location.href = "login.php";
+                    return;
+                }
+
+                if (liked == 1) {
+                    $(this).attr('liked', '0');
+                    $(this).removeClass('liked');
+                } else {
+                    $(this).attr('liked', '1');
+                    $(this).addClass('liked');
+                }
+
+                $(this).next().load("assets/ajax/like-unlike.php", {
+                    post_id: post_id
+                });
+            });
+        });
+    </script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
