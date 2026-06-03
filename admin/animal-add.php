@@ -25,6 +25,8 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
         <?php
         $key = "hhdsfs1263z";
         include "inc/side-nav.php";
+        $oldAnimal = $_SESSION['old_animal'] ?? [];
+        unset($_SESSION['old_animal']);
         ?>
 
         <div class="main-table">
@@ -52,22 +54,22 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 
                 <div class="mb-3">
                     <label class="form-label">Nome</label>
-                    <input type="text" class="form-control" name="name">
+                    <input type="text" class="form-control" name="name" value="<?= htmlspecialchars($oldAnimal['name'] ?? '') ?>" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Espécie</label>
-                    <input type="text" class="form-control" name="species">
+                    <input type="text" class="form-control" name="species" value="<?= htmlspecialchars($oldAnimal['species'] ?? '') ?>" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Idade</label>
-                    <input type="number" class="form-control" name="age">
+                    <input type="number" class="form-control" name="age" min="0" max="50" value="<?= htmlspecialchars($oldAnimal['age'] ?? '') ?>" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Descrição</label>
-                    <textarea class="form-control text" name="description"></textarea>
+                    <textarea class="form-control text" name="description" required><?= htmlspecialchars($oldAnimal['description'] ?? '') ?></textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Imagem</label>

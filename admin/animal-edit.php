@@ -32,6 +32,8 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && isset($_GET[
         $id = $_GET['id'];
 
         $animal = getAnimalById($conn, $id);
+        $oldAnimal = $_SESSION['old_animal_edit'][$id] ?? [];
+        unset($_SESSION['old_animal_edit'][$id]);
         ?>
 
         <div class="main-table">
@@ -65,7 +67,8 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && isset($_GET[
                         <input type="text"
                             class="form-control"
                             name="name"
-                            value="<?= $animal['name'] ?>">
+                            value="<?= htmlspecialchars($oldAnimal['name'] ?? $animal['name']) ?>"
+                            required>
                     </div>
 
                     <div class="mb-3">
@@ -73,7 +76,8 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && isset($_GET[
                         <input type="text"
                             class="form-control"
                             name="species"
-                            value="<?= $animal['species'] ?>">
+                            value="<?= htmlspecialchars($oldAnimal['species'] ?? $animal['species']) ?>"
+                            required>
                     </div>
 
                     <div class="mb-3">
@@ -81,14 +85,18 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && isset($_GET[
                         <input type="number"
                             class="form-control"
                             name="age"
-                            value="<?= $animal['age'] ?>">
+                            min="0"
+                            max="50"
+                            value="<?= htmlspecialchars($oldAnimal['age'] ?? $animal['age']) ?>"
+                            required>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Descrição</label>
                         <textarea
                             class="form-control text"
-                            name="description"><?= $animal['description'] ?></textarea>
+                            name="description"
+                            required><?= htmlspecialchars($oldAnimal['description'] ?? $animal['description']) ?></textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Imagem</label>

@@ -25,6 +25,8 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 		include_once("data/Categoria.php");
 		include_once("../db_conn.php");
 		$categories = getAll($conn);
+		$oldPost = $_SESSION['old_post'] ?? [];
+		unset($_SESSION['old_post']);
 
 		?>
 
@@ -53,7 +55,9 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 					<label class="form-label">Titulo</label>
 					<input type="text"
 						class="form-control"
-						name="title">
+						name="title"
+						value="<?= htmlspecialchars($oldPost['title'] ?? '') ?>"
+						required>
 
 				</div>
 
@@ -67,13 +71,16 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 					<label class="form-label">Conteudo</label>
 					<textarea
 						class="form-control text"
-						name="text"></textarea>
+						name="text"
+						maxlength="65000"
+						required><?= htmlspecialchars($oldPost['text'] ?? '') ?></textarea>
 				</div>
 				<div class="mb-3">
 					<label class="form-label">Categoria</label>
 					<select name="category" class="form-control">
 						<?php foreach ($categories as $category) { ?>
-							<option value="<?= $category['id'] ?>">
+							<option value="<?= $category['id'] ?>"
+								<?= (isset($oldPost['category']) && (int) $oldPost['category'] === (int) $category['id']) ? 'selected' : '' ?>>
 								<?= $category['category'] ?></option>
 						<?php } ?>
 					</select>

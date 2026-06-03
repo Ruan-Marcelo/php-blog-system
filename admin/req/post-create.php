@@ -19,12 +19,29 @@ if (
 include "../../db_conn.php";
 include_once __DIR__ . "/upload-image.php";
 
-$title = $_POST['title'];
-$text = $_POST['text'];
+$title = trim($_POST['title']);
+$text = trim($_POST['text']);
 $category = $_POST['category'];
+$_SESSION['old_post'] = [
+    'title' => $title,
+    'text' => $text,
+    'category' => $category,
+];
 
 if (empty($title)) {
     $em = "O titulo e obrigatorio";
+    header("Location: ../post-add.php?error=$em");
+    exit;
+}
+
+if ($text === '') {
+    $em = "O conteudo e obrigatorio";
+    header("Location: ../post-add.php?error=$em");
+    exit;
+}
+
+if (strlen($text) > 65000) {
+    $em = "O conteudo ultrapassa o limite permitido";
     header("Location: ../post-add.php?error=$em");
     exit;
 }
@@ -59,6 +76,7 @@ if ($image_name !== "") {
 }
 
 if ($res) {
+    unset($_SESSION['old_post']);
     $sm = "Criado com sucesso!";
     header("Location: ../post-add.php?success=$sm");
     exit;

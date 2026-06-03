@@ -14,13 +14,43 @@ if (!isset($_POST['name'], $_POST['species'], $_POST['age'], $_POST['description
 include "../../db_conn.php";
 include_once __DIR__ . "/upload-image.php";
 
-$name = $_POST['name'];
-$species = $_POST['species'];
-$age = $_POST['age'];
-$description = $_POST['description'];
+$name = trim($_POST['name']);
+$species = trim($_POST['species']);
+$age = trim($_POST['age']);
+$description = trim($_POST['description']);
+$_SESSION['old_animal'] = [
+    'name' => $name,
+    'species' => $species,
+    'age' => $age,
+    'description' => $description,
+];
 
 if (empty($name)) {
     $em = "O nome e obrigatorio";
+    header("Location: ../animal-add.php?error=$em");
+    exit;
+}
+
+if (preg_match('/\d/', $name)) {
+    $em = "O nome nao pode conter numeros";
+    header("Location: ../animal-add.php?error=$em");
+    exit;
+}
+
+if ($species === '' || preg_match('/\d/', $species)) {
+    $em = "A especie e obrigatoria e nao pode conter numeros";
+    header("Location: ../animal-add.php?error=$em");
+    exit;
+}
+
+if ($age === '' || !is_numeric($age) || (float) $age < 0 || (float) $age > 50) {
+    $em = "Informe uma idade valida entre 0 e 50";
+    header("Location: ../animal-add.php?error=$em");
+    exit;
+}
+
+if ($description === '') {
+    $em = "A descricao e obrigatoria";
     header("Location: ../animal-add.php?error=$em");
     exit;
 }
@@ -54,6 +84,7 @@ if ($new_name) {
 }
 
 if ($res) {
+    unset($_SESSION['old_animal']);
     $sm = "Animal criado com sucesso!";
     header("Location: ../animal-add.php?success=$sm");
     exit;

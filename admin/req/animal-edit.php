@@ -21,14 +21,40 @@ include "../../db_conn.php";
 include_once __DIR__ . "/upload-image.php";
 
 $id = $_POST['id'];
-$name = $_POST['name'];
-$species = $_POST['species'];
-$age = $_POST['age'];
-$description = $_POST['description'];
+$name = trim($_POST['name']);
+$species = trim($_POST['species']);
+$age = trim($_POST['age']);
+$description = trim($_POST['description']);
 $old_image = $_POST['image_old'] ?? 'default.jpg';
+$_SESSION['old_animal_edit'][$id] = [
+    'name' => $name,
+    'species' => $species,
+    'age' => $age,
+    'description' => $description,
+];
 
 if (empty($name)) {
     header("Location: ../animal-edit.php?error=Nome obrigatorio&id=$id");
+    exit;
+}
+
+if (preg_match('/\d/', $name)) {
+    header("Location: ../animal-edit.php?error=O nome nao pode conter numeros&id=$id");
+    exit;
+}
+
+if ($species === '' || preg_match('/\d/', $species)) {
+    header("Location: ../animal-edit.php?error=A especie e obrigatoria e nao pode conter numeros&id=$id");
+    exit;
+}
+
+if ($age === '' || !is_numeric($age) || (float) $age < 0 || (float) $age > 50) {
+    header("Location: ../animal-edit.php?error=Informe uma idade valida entre 0 e 50&id=$id");
+    exit;
+}
+
+if ($description === '') {
+    header("Location: ../animal-edit.php?error=A descricao e obrigatoria&id=$id");
     exit;
 }
 
@@ -63,6 +89,7 @@ if ($image_name !== "") {
 }
 
 if ($res) {
+    unset($_SESSION['old_animal_edit'][$id]);
     header("Location: ../animal-edit.php?success=Atualizado&id=$id");
     exit;
 }
