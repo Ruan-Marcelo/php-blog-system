@@ -14,11 +14,11 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])
   $res3 = deleteLikeByPostId($conn, $post_id);
   if ($res) {
       $sm = "Excluído com sucesso!"; 
-      header("Location: post.php?success=$sm");
+      header("Location: Post.php?success=$sm");
       exit;
   }else {
     $em = "Ocorreu um erro desconhecido"; 
-    header("Location: post.php?error=$em");
+    header("Location: Post.php?error=$em");
     exit;
   }
 

@@ -33,7 +33,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && isset($_GET[
 
 		<div class="main-table">
 			<h3 class="mb-3">Editar Post
-				<a href="post.php" class="btn btn-secondary">Posts</a>
+				<a href="Post.php" class="btn btn-secondary">Posts</a>
 			</h3>
 			<?php if (isset($_GET['error'])) { ?>
 				<div class="alert alert-warning">
