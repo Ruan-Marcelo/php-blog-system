@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../../../login.php");
+    header("Location: ../login.php");
     exit;
 }
 
@@ -22,5 +22,5 @@ $stmt->execute([$userId]);
 session_unset();
 session_destroy();
 
-header("Location: ../../../login.php?success=Conta excluida com sucesso");
+header("Location: ../login.php?success=Conta excluida com sucesso");
 exit;

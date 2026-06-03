@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_POST['uname'], $_POST['fname'], $_POST['new_password'], $_POST['confirm_password'])) {
-    header("Location: ../../../forgot-password.php");
+    header("Location: ../forgot-password.php");
     exit;
 }
 
@@ -19,22 +19,22 @@ $query = http_build_query([
 ]);
 
 if ($uname === '' || $fname === '') {
-    header("Location: ../../../forgot-password.php?error=Preencha usuario e nome completo&$query");
+    header("Location: ../forgot-password.php?error=Preencha usuario e nome completo&$query");
     exit;
 }
 
 if ($newPassword === '' || $confirmPassword === '') {
-    header("Location: ../../../forgot-password.php?error=Preencha a nova senha&$query");
+    header("Location: ../forgot-password.php?error=Preencha a nova senha&$query");
     exit;
 }
 
 if ($newPassword !== $confirmPassword) {
-    header("Location: ../../../forgot-password.php?error=A nova senha e a confirmacao nao conferem&$query");
+    header("Location: ../forgot-password.php?error=A nova senha e a confirmacao nao conferem&$query");
     exit;
 }
 
 if (strlen($newPassword) < 6) {
-    header("Location: ../../../forgot-password.php?error=A senha deve ter pelo menos 6 caracteres&$query");
+    header("Location: ../forgot-password.php?error=A senha deve ter pelo menos 6 caracteres&$query");
     exit;
 }
 
@@ -43,7 +43,7 @@ $stmt->execute([$uname]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$user || strtolower(trim($user['fname'])) !== strtolower($fname)) {
-    header("Location: ../../../forgot-password.php?error=Dados da conta nao conferem&$query");
+    header("Location: ../forgot-password.php?error=Dados da conta nao conferem&$query");
     exit;
 }
 
@@ -51,5 +51,5 @@ $hash = password_hash($newPassword, PASSWORD_DEFAULT);
 $stmt = $conn->prepare("UPDATE users SET password = ? WHERE id = ?");
 $stmt->execute([$hash, $user['id']]);
 
-header("Location: ../../../login.php?success=Senha atualizada com sucesso");
+header("Location: ../login.php?success=Senha atualizada com sucesso");
 exit;

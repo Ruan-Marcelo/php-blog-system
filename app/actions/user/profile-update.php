@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['user_id'], $_SESSION['username'])) {
-    header("Location: ../../../login.php");
+    header("Location: ../login.php");
     exit;
 }
 
@@ -16,19 +16,19 @@ if ($action === 'profile') {
     $username = trim($_POST['username'] ?? '');
 
     if ($fname === '') {
-        header("Location: ../../../profile.php?error=O nome completo e obrigatorio");
+        header("Location: ../profile.php?error=O nome completo e obrigatorio");
         exit;
     }
 
     if ($username === '') {
-        header("Location: ../../../profile.php?error=O nome de usuario e obrigatorio");
+        header("Location: ../profile.php?error=O nome de usuario e obrigatorio");
         exit;
     }
 
     $stmt = $conn->prepare("SELECT id FROM users WHERE username = ? AND id <> ?");
     $stmt->execute([$username, $user_id]);
     if ($stmt->fetch()) {
-        header("Location: ../../../profile.php?error=Este nome de usuario ja esta em uso");
+        header("Location: ../profile.php?error=Este nome de usuario ja esta em uso");
         exit;
     }
 
@@ -37,11 +37,11 @@ if ($action === 'profile') {
 
     if ($res) {
         $_SESSION['username'] = $username;
-        header("Location: ../../../profile.php?success=Perfil atualizado com sucesso");
+        header("Location: ../profile.php?success=Perfil atualizado com sucesso");
         exit;
     }
 
-    header("Location: ../../../profile.php?error=Erro ao atualizar perfil");
+    header("Location: ../profile.php?error=Erro ao atualizar perfil");
     exit;
 }
 
@@ -51,17 +51,17 @@ if ($action === 'password') {
     $confirm = $_POST['confirm_password'] ?? '';
 
     if ($current === '' || $new === '' || $confirm === '') {
-        header("Location: ../../../profile.php?perror=Preencha todos os campos de senha#senha");
+        header("Location: ../profile.php?perror=Preencha todos os campos de senha#senha");
         exit;
     }
 
     if ($new !== $confirm) {
-        header("Location: ../../../profile.php?perror=A nova senha e a confirmacao nao conferem#senha");
+        header("Location: ../profile.php?perror=A nova senha e a confirmacao nao conferem#senha");
         exit;
     }
 
     if (strlen($new) < 6) {
-        header("Location: ../../../profile.php?perror=A nova senha deve ter pelo menos 6 caracteres#senha");
+        header("Location: ../profile.php?perror=A nova senha deve ter pelo menos 6 caracteres#senha");
         exit;
     }
 
@@ -70,7 +70,7 @@ if ($action === 'password') {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$user || !password_verify($current, $user['password'])) {
-        header("Location: ../../../profile.php?perror=Senha atual incorreta#senha");
+        header("Location: ../profile.php?perror=Senha atual incorreta#senha");
         exit;
     }
 
@@ -79,13 +79,13 @@ if ($action === 'password') {
     $res = $stmt->execute([$hash, $user_id]);
 
     if ($res) {
-        header("Location: ../../../profile.php?psuccess=Senha atualizada com sucesso#senha");
+        header("Location: ../profile.php?psuccess=Senha atualizada com sucesso#senha");
         exit;
     }
 
-    header("Location: ../../../profile.php?perror=Erro ao atualizar senha#senha");
+    header("Location: ../profile.php?perror=Erro ao atualizar senha#senha");
     exit;
 }
 
-header("Location: ../../../profile.php");
+header("Location: ../profile.php");
 exit;
