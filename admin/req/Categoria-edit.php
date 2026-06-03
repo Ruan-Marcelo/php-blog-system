@@ -5,10 +5,10 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) ) {
 
     if(isset($_POST['category']) && isset($_POST['id'])){
       include "../../db_conn.php";
-      $category = $_POST['category'];
+      $category = trim($_POST['category']);
       $id = $_POST['id'];
 
-      if(empty($category)){
+      if($category === ''){
          $em = "A categoria é obrigatória"; 
          header("Location: ../categoria-edit.php?error=$em&id=$id");
          exit;

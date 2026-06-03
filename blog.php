@@ -58,7 +58,7 @@ $siteSettings = get_site_settings($conn);
 					<h1 class="display-4 mb-4 fs-3">
 						<?php
 						if (isset($_GET['search'])) {
-							echo "Search <b>'" . htmlspecialchars($_GET['search']) . "'</b>";
+							echo "Pesquisa por <b>'" . htmlspecialchars($_GET['search']) . "'</b>";
 						} ?></h1>
 					<?php foreach ($posts as $post) { ?>
 						<div class="card main-blog-card mb-5">
@@ -125,7 +125,7 @@ $siteSettings = get_site_settings($conn);
 					<?php if ($notFound) { ?>
 						<div class="alert alert-warning">
 							Nenhum resultado de pesquisa encontrado
-							<?php echo " - <b>key = '" . htmlspecialchars($_GET['search']) . "'</b>" ?>
+							<?php echo " - <b>termo pesquisado: '" . htmlspecialchars($_GET['search']) . "'</b>" ?>
 						</div>
 					<?php } else { ?>
 						<div class="alert alert-warning">

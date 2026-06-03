@@ -5,9 +5,9 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) ) {
 
     if(isset($_POST['category'])){
       include "../../db_conn.php";
-      $category = $_POST['category'];
+      $category = trim($_POST['category']);
 
-      if(empty($category)){
+      if($category === ''){
          $em = "A categoria é obrigatória"; 
          header("Location: ../categoria-add.php?error=$em");
          exit;
