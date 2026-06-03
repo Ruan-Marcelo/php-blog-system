@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 if (!isset($_SESSION['admin_id']) || !isset($_SESSION['username'])) {
@@ -6,85 +6,59 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['username'])) {
     exit;
 }
 
-if (
-    isset($_POST['name'], $_POST['species'], $_POST['age'], $_POST['description'])
-) {
+if (!isset($_POST['name'], $_POST['species'], $_POST['age'], $_POST['description'])) {
+    header("Location: ../animal-add.php");
+    exit;
+}
 
-    include "../../db_conn.php";
+include "../../db_conn.php";
+include_once __DIR__ . "/upload-image.php";
 
-    $name = $_POST['name'];
-    $species = $_POST['species'];
-    $age = $_POST['age'];
-    $description = $_POST['description'];
+$name = $_POST['name'];
+$species = $_POST['species'];
+$age = $_POST['age'];
+$description = $_POST['description'];
 
-    if (empty($name)) {
-        $em = "O nome é obrigatório";
+if (empty($name)) {
+    $em = "O nome e obrigatorio";
+    header("Location: ../animal-add.php?error=$em");
+    exit;
+}
+
+$new_name = null;
+
+if (!empty($_FILES['image']['name'])) {
+    $allowed = ['jpg', 'jpeg', 'png'];
+    if (!validar_imagem_enviada($_FILES['image'], $allowed, 2000000, $img_ex, $em)) {
         header("Location: ../animal-add.php?error=$em");
         exit;
     }
 
-    $new_name = null;
+    $new_name = uniqid("ANIMAL-", true) . '.' . $img_ex;
+    $path = "../../upload/animals/" . $new_name;
 
-    // =========================
-    // TRATAMENTO DA IMAGEM
-    // =========================
-    if (!empty($_FILES['image']['name'])) {
-
-        $image_name = $_FILES['image']['name'];
-        $image_size = $_FILES['image']['size'];
-        $tmp_name = $_FILES['image']['tmp_name'];
-        $error = $_FILES['image']['error'];
-
-        if ($error === 0) {
-
-            if ($image_size > 2000000) {
-                $em = "Imagem muito grande!";
-                header("Location: ../animal-add.php?error=$em");
-                exit;
-            }
-
-            $img_ex = strtolower(pathinfo($image_name, PATHINFO_EXTENSION));
-            $allowed = ['jpg', 'jpeg', 'png'];
-
-            if (!in_array($img_ex, $allowed)) {
-                $em = "Tipo de imagem inválido!";
-                header("Location: ../animal-add.php?error=$em");
-                exit;
-            }
-
-            $new_name = uniqid("ANIMAL-", true) . '.' . $img_ex;
-            $path = "../../upload/animals/" . $new_name;
-
-            move_uploaded_file($tmp_name, $path);
-        }
-    }
-
-    // =========================
-    // INSERT ÚNICO
-    // =========================
-    if ($new_name) {
-        $sql = "INSERT INTO animals (name, species, age, description, image)
-                VALUES (?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $res = $stmt->execute([$name, $species, $age, $description, $new_name]);
-    } else {
-        $sql = "INSERT INTO animals (name, species, age, description)
-                VALUES (?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $res = $stmt->execute([$name, $species, $age, $description]);
-    }
-
-    if ($res) {
-        $sm = "Animal criado com sucesso!";
-        header("Location: ../animal-add.php?success=$sm");
-    } else {
-        $em = "Erro ao criar animal";
+    if (!mover_imagem_enviada($_FILES['image'], $path, $em)) {
         header("Location: ../animal-add.php?error=$em");
+        exit;
     }
+}
 
-    exit;
-
+if ($new_name) {
+    $sql = "INSERT INTO animals (name, species, age, description, image) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $res = $stmt->execute([$name, $species, $age, $description, $new_name]);
 } else {
-    header("Location: ../animal-add.php");
+    $sql = "INSERT INTO animals (name, species, age, description) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $res = $stmt->execute([$name, $species, $age, $description]);
+}
+
+if ($res) {
+    $sm = "Animal criado com sucesso!";
+    header("Location: ../animal-add.php?success=$sm");
     exit;
 }
+
+$em = "Erro ao criar animal";
+header("Location: ../animal-add.php?error=$em");
+exit;
