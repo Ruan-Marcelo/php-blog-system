@@ -22,6 +22,12 @@ if (isset($_GET['post_id'])) {
 		header("Location: blog.php");
 		exit;
 	}
+
+	if ($logged) {
+		$_SESSION['viewed_posts'] = $_SESSION['viewed_posts'] ?? [];
+		$_SESSION['viewed_posts'] = array_values(array_unique(array_merge([(int) $id], $_SESSION['viewed_posts'])));
+		$_SESSION['viewed_posts'] = array_slice($_SESSION['viewed_posts'], 0, 8);
+	}
 ?>
 	<!DOCTYPE html>
 	<html lang="pt-br">
