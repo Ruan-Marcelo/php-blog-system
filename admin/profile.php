@@ -46,21 +46,21 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 					<input type="text"
 						class="form-control"
 						name="fname"
-						value="<?= $admin['first_name'] ?>">
+						value="<?= htmlspecialchars($admin['first_name']) ?>">
 				</div>
 				<div class="mb-3">
 					<label class="form-label">Sobrenome</label>
 					<input type="text"
 						class="form-control"
 						name="lname"
-						value="<?= $admin['last_name'] ?>">
+						value="<?= htmlspecialchars($admin['last_name']) ?>">
 				</div>
 				<div class="mb-3">
 					<label class="form-label">Nome de usuário</label>
 					<input type="text"
 						class="form-control"
 						name="username"
-						value="<?= $admin['username'] ?>">
+						value="<?= htmlspecialchars($admin['username']) ?>">
 				</div>
 				<button type="submit" class="btn btn-primary">Salvar</button>
 			</form>

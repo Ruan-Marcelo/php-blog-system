@@ -45,9 +45,9 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) ) {
         // hashing the password
         $new_pass = password_hash($new_pass, PASSWORD_DEFAULT);
 
-         $sql = "UPDATE admin SET password=?";
+         $sql = "UPDATE admin SET password=? WHERE id=?";
           $stmt = $conn->prepare($sql);
-          $res = $stmt->execute([$new_pass]);
+          $res = $stmt->execute([$new_pass, $id]);
          if ($res) {
               $sm = "A senha foi alterada com sucesso.!"; 
               header("Location: ../profile.php?psuccess=$sm#cpassword");
