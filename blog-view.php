@@ -50,6 +50,7 @@ if (isset($_GET['post_id'])) {
 		?>
 
 		<div class="container mt-5">
+			<a href="blog.php" class="btn btn-outline-secondary mb-3">Voltar ao blog</a>
 			<section class="d-flex">
 
 				<main class="main-blog">
@@ -156,9 +157,20 @@ if (isset($_GET['post_id'])) {
 													<img src="./assets/imgs/user-default.png" width="40" height="40">
 												</div>
 												<div class="p-2">
-													<span>@<?= ($u != 0 && isset($u['username'])) ? $u['username'] : 'Usuário desconhecido' ?></span>
-													<p><?= $comment['comment'] ?></p>
+													<span>@<?= htmlspecialchars(($u != 0 && isset($u['username'])) ? $u['username'] : 'Usuario desconhecido') ?></span>
+													<p><?= htmlspecialchars($comment['comment']) ?></p>
 													<small class="text-body-secondary"><?= $comment['crated_at'] ?></small>
+													<?php if ($logged && (int) $comment['user_id'] === (int) $user_id) { ?>
+														<form action="php/comment-edit.php" method="post" class="mt-2">
+															<input type="hidden" name="comment_id" value="<?= (int) $comment['comment_id'] ?>">
+															<input type="hidden" name="post_id" value="<?= (int) $post_id ?>">
+															<textarea class="form-control mb-2" name="comment" rows="2" required><?= htmlspecialchars($comment['comment']) ?></textarea>
+															<div class="d-flex gap-2">
+																<button type="submit" class="btn btn-sm btn-primary">Salvar comentario</button>
+																<button type="submit" class="btn btn-sm btn-outline-danger" formaction="php/comment-delete.php" formmethod="post" onclick="return confirm('Excluir este comentario?')">Excluir</button>
+															</div>
+														</form>
+													<?php } ?>
 												</div>
 											</div>
 											<hr>

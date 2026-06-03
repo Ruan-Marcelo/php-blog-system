@@ -108,7 +108,9 @@ $category = 0;
                                                         aria-hidden="true"></i>
                                                 <?php }
                                             } else if ($siteSettings['likes_enabled'] === '1') { ?>
-                                               <i class="bi bi-hand-thumbs-up like-btn"></i>
+                                               <a href="login.php" class="text-decoration-none" title="Entrar para curtir">
+                                                   <i class="bi bi-hand-thumbs-up"></i>
+                                               </a>
                                             <?php } ?>
                                             <?php if ($siteSettings['likes_enabled'] === '1') { ?>
                                                 Likes (

@@ -43,7 +43,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
 				</div>
 
 				<div class="mb-3">
-					<label>Senha</label>
+					<div class="d-flex justify-content-between align-items-center">
+						<label>Senha</label>
+						<a href="forgot-password.php" class="small text-decoration-none">Esqueci minha senha</a>
+					</div>
 					<input type="password" class="form-control" name="pass">
 				</div>
 
@@ -53,7 +56,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
 					<a href="admin-login.php">Admin</a>
 					<a href="blog.php">Blog</a>
 					<a href="signup.php">Registrar</a>
-					<a href="forgot-password.php">Esqueci a senha</a>
 				</div>
 			</form>
 
