@@ -65,7 +65,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 								<td><?= $user['fname'] ?></td>
 								<td><?= $user['username'] ?></td>
 								<td>
-									<a href="user-delete.php?user_id=<?= $user['id'] ?>" class="btn btn-danger">Delete</a>
+									<a href="user-delete.php?user_id=<?= $user['id'] ?>" class="btn btn-danger" onclick="return confirm('Excluir este usuario?')">Excluir</a>
 								</td>
 							</tr>
 						<?php } ?>
@@ -74,7 +74,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 				</table>
 			<?php } else { ?>
 				<div class="alert alert-warning">
-					Empty!
+					Nenhum usuario cadastrado.
 				</div>
 			<?php } ?>
 		</div>

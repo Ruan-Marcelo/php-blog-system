@@ -26,6 +26,7 @@ $species = trim($_POST['species']);
 $age = trim($_POST['age']);
 $description = trim($_POST['description']);
 $old_image = $_POST['image_old'] ?? 'default.jpg';
+$remove_image = isset($_POST['remove_image']) && $_POST['remove_image'] === '1';
 $_SESSION['old_animal_edit'][$id] = [
     'name' => $name,
     'species' => $species,
@@ -60,7 +61,12 @@ if ($description === '') {
 
 $image_name = $_FILES['image']['name'] ?? '';
 
-if ($image_name !== "") {
+if ($remove_image && $old_image !== "default.jpg") {
+    @unlink("../../upload/animals/" . basename($old_image));
+    $sql = "UPDATE animals SET name=?, species=?, age=?, description=?, image=? WHERE id=?";
+    $stmt = $conn->prepare($sql);
+    $res = $stmt->execute([$name, $species, $age, $description, 'default.jpg', $id]);
+} else if ($image_name !== "") {
     $allowed = ['jpg', 'jpeg', 'png'];
     if (!validar_imagem_enviada($_FILES['image'], $allowed, 2000000, $img_ex, $em)) {
         header("Location: ../animal-edit.php?error=$em&id=$id");

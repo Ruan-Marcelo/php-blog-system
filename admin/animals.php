@@ -84,7 +84,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 								<td><?= $animal['age'] ?> anos</td>
 
 								<td>
-									<a href="animal-delete.php?id=<?= intval($animal['id']) ?>" class="btn btn-danger">
+									<a href="animal-delete.php?id=<?= intval($animal['id']) ?>" class="btn btn-danger" onclick="return confirm('Excluir este animal?')">
 										Deletar
 									</a>
 

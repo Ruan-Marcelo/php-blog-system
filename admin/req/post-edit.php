@@ -26,6 +26,7 @@ $text = $_POST['text'];
 $post_id = $_POST['post_id'];
 $cu = $_POST['cover_url'];
 $category_id = $_POST['category'];
+$remove_cover = isset($_POST['remove_cover']) && $_POST['remove_cover'] === '1';
 
 if (empty($title)) {
     $em = "O titulo e obrigatorio";
@@ -35,7 +36,12 @@ if (empty($title)) {
 
 $image_name = $_FILES['cover']['name'];
 
-if ($image_name !== "") {
+if ($remove_cover && $cu !== "default.jpg") {
+    @unlink("../../upload/blog/" . basename($cu));
+    $sql = "UPDATE post SET post_title=?, post_text=?, cover_url=?, category=? WHERE post_id=?";
+    $stmt = $conn->prepare($sql);
+    $res = $stmt->execute([$title, $text, 'default.jpg', $category_id, $post_id]);
+} else if ($image_name !== "") {
     $allowed_exs = ['jpg', 'jpeg', 'png'];
     if (!validar_imagem_enviada($_FILES['cover'], $allowed_exs, 130000, $image_ex, $em)) {
         header("Location: ../post-edit.php?error=$em&post_id=$post_id");

@@ -103,6 +103,12 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && isset($_GET[
                         <input type="file" class="form-control" name="image">
                         <br>
                         <img src="../upload/animals/<?= $animal['image'] ?>" width="200">
+                        <?php if (!empty($animal['image']) && $animal['image'] !== 'default.jpg') { ?>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" name="remove_image" value="1" id="removeAnimalImage">
+                                <label class="form-check-label" for="removeAnimalImage">Remover imagem atual</label>
+                            </div>
+                        <?php } ?>
                     </div>
 
                     <input type="hidden" name="image_old" value="<?= $animal['image'] ?>">

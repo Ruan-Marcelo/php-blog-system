@@ -146,6 +146,14 @@ if (!empty($viewedPosts)) {
                         <button type="submit" class="btn btn-primary">Salvar senha</button>
                     </div>
                 </form>
+
+                <form class="card shadow-sm mt-4 border-danger" action="php/account-delete.php" method="post" onsubmit="return confirm('Excluir sua conta definitivamente?')">
+                    <div class="card-body">
+                        <h2 class="fs-5 mb-2">Excluir conta</h2>
+                        <p class="text-muted">Esta acao remove sua conta e encerra a sessao.</p>
+                        <button type="submit" class="btn btn-outline-danger">Excluir minha conta</button>
+                    </div>
+                </form>
             </div>
 
             <div class="col-lg-8">

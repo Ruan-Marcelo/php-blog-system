@@ -76,7 +76,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 									?>
 								</td>
 								<td>
-									<a href="post-delete.php?post_id=<?= $post['post_id'] ?>" class="btn btn-danger">Deletar</a>
+									<a href="post-delete.php?post_id=<?= $post['post_id'] ?>" class="btn btn-danger" onclick="return confirm('Excluir este post?')">Deletar</a>
 									<a href="post-edit.php?post_id=<?= $post['post_id'] ?>" class="btn btn-warning">Editar</a>
 									<?php
 									if ($post['publish'] == 1) {

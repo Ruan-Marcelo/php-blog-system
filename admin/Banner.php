@@ -83,7 +83,7 @@ $banners = getAllBanners($conn);
                             <i class="fa fa-edit"></i>
                         </a>
 
-                        <a href="banner-delete.php?id=<?= $banner['id'] ?>" class="btn btn-danger btn-sm">
+                        <a href="banner-delete.php?id=<?= $banner['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Excluir este banner?')">
                             <i class="fa fa-trash"></i>
                         </a>
 

@@ -75,6 +75,12 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && isset($_GET[
 						class="form-control"
 						name="cover">
 					<img src="../upload/blog/<?= $post['cover_url'] ?>" width="200">
+					<?php if (!empty($post['cover_url']) && $post['cover_url'] !== 'default.jpg') { ?>
+						<div class="form-check mt-2">
+							<input class="form-check-input" type="checkbox" name="remove_cover" value="1" id="removePostCover">
+							<label class="form-check-label" for="removePostCover">Remover imagem atual</label>
+						</div>
+					<?php } ?>
 				</div>
 				<div class="mb-3">
 					<label class="form-label">Conteudo</label>

@@ -73,7 +73,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 									?>
 								</td>
 								<td>
-									<a href="comment-delete.php?comment_id=<?= $comment['comment_id'] ?>" class="btn btn-danger">Delete</a>
+									<a href="comment-delete.php?comment_id=<?= $comment['comment_id'] ?>" class="btn btn-danger" onclick="return confirm('Excluir este comentario?')">Excluir</a>
 								</td>
 							</tr>
 						<?php } ?>

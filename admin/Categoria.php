@@ -55,7 +55,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 								<th scope="row"><?= $category['id'] ?></th>
 								<td><?= $category['category'] ?></td>
 								<td>
-									<a href="categoria-delete.php?id=<?= $category['id'] ?>" class="btn btn-danger">Deletar</a>
+									<a href="categoria-delete.php?id=<?= $category['id'] ?>" class="btn btn-danger" onclick="return confirm('Excluir esta categoria?')">Deletar</a>
 									<a href="categoria-edit.php?id=<?= $category['id'] ?>" class="btn btn-warning">Editar</a>
 								</td>
 							</tr>
@@ -65,7 +65,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 				</table>
 			<?php } else { ?>
 				<div class="alert alert-warning">
-					Empty!
+					Nenhuma categoria cadastrada.
 				</div>
 			<?php } ?>
 		</div>
