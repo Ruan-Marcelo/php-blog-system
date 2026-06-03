@@ -6,11 +6,18 @@ if (session_status() === PHP_SESSION_NONE) {
 include_once("db_conn.php");
 include_once("site_config.php");
 $siteSettings = get_site_settings($conn);
+$currentPage = basename($_SERVER['PHP_SELF']);
+$searchTerm = isset($_GET['search']) ? trim($_GET['search']) : '';
+
+function nav_active($pages, $currentPage)
+{
+    return in_array($currentPage, (array) $pages, true) ? ' active' : '';
+}
 ?>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white ">
       <div class="container-fluid">
 
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="index.php">
               <img src="./assets/imgs/icon.png" width="100" alt="cachorro do apoio pet">
               <?= htmlspecialchars($siteSettings['site_name']) ?>
           </a>
@@ -21,21 +28,21 @@ $siteSettings = get_site_settings($conn);
 	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
+	          <a class="nav-link<?= nav_active('index.php', $currentPage) ?>" href="index.php">Inicio</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="blog.php">Blog</a>
+	          <a class="nav-link<?= nav_active(['blog.php', 'blog-view.php', 'search.php'], $currentPage) ?>" href="blog.php">Blog</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="sobre.php">Sobre</a>
+	          <a class="nav-link<?= nav_active('sobre.php', $currentPage) ?>" href="sobre.php">Sobre</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" 
+	          <a class="nav-link<?= nav_active('categoria.php', $currentPage) ?>" 
 	             href="categoria.php">
 	             Categoria</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" 
+	          <a class="nav-link<?= nav_active(['animals.php', 'animal-view.php'], $currentPage) ?>" 
 	             href="animals.php">
 	             Animais</a>
 	        </li>
@@ -50,9 +57,12 @@ $siteSettings = get_site_settings($conn);
 	             aria-expanded="false">
 	             <i class="fa fa-user" 
 	                aria-hidden="true"></i> 
-	            @<?=$_SESSION['username']?>
+	            @<?= htmlspecialchars($_SESSION['username']) ?>
 	          </a>
 	          <ul class="dropdown-menu">
+	            <li><a class="dropdown-item" 
+	            	   href="profile.php">
+	            	   Perfil</a></li>
 	            <li><a class="dropdown-item" 
 	            	   href="logout.php">
 	            	   Sair</a></li>
@@ -71,12 +81,13 @@ $siteSettings = get_site_settings($conn);
 	      <form class="d-flex" 
 	             role="search"
 	             method="GET"
-	             action="blog.php">
+	             action="search.php">
 	        <input class="form-control me-2" 
 	               type="search"
 	               name="search" 
 	               placeholder="Procurar" 
-	               aria-label="Search">
+	               aria-label="Search"
+	               value="<?= htmlspecialchars($searchTerm) ?>">
 
 	        <button class="btn btn-outline-success" 
 	                type="submit">
