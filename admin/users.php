@@ -28,8 +28,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 		<div class="main-table">
 			<h3 class="mb-3">todos os Usuarios
 				<a href="../signup.php" class="btn btn-success">Adcionar Usuario</a>
-				<a href="#"
-					onclick="exportarExcel()"
+				<a href="export-excel.php?tipo=usuarios"
 					class="btn btn-primary btn-sm"
 					style="width:auto; display:inline-flex; align-items:center; padding:10px 10px;">
 					<i class="bi bi-file-earmark-excel"></i> &nbsp; Exportar Excel
@@ -84,29 +83,6 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 		<script>
 			var navList = document.getElementById('navList').children;
 			navList.item(0).classList.add("active");
-		</script>
-		<!-- excel function  -->
-		<script>
-			function exportarExcel() {
-
-				let tabela = document.getElementById("tabelaUsers");
-
-				let html = tabela.outerHTML;
-
-				let url = 'data:application/vnd.ms-excel,' + encodeURIComponent(html);
-
-				let link = document.createElement("a");
-
-				link.href = url;
-
-				link.download = "usuarios.xls";
-
-				document.body.appendChild(link);
-
-				link.click();
-
-				document.body.removeChild(link);
-			}
 		</script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 	</body>
